@@ -1,0 +1,57 @@
+/* Estilos globais */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* Fonte padrão */
+    color: #333; /* Cor do texto */
+    background-color:#cfdadd; 
+  }
+  
+  
+  ul {
+    list-style-type: none; /* Remove marcadores das listas */
+    padding: 0;
+    margin: 0;
+  }
+  
+  button {
+    font-family: inherit; /* Mantém a fonte do botão consistente com o resto do texto */
+    border: none;
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 4px; /* Cantos arredondados */
+    cursor: pointer; /* Cursor em forma de mão ao passar sobre o botão */
+    font-size: 16px; /* Tamanho da fonte do botão */
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Cor do botão ao passar o mouse */
+  }
+  
+  /* Estilos para o container principal */
+  .container {
+    width: 90%;
+    max-width: 1200px; /* Largura máxima */
+    margin: 0 auto; /* Centraliza o container */
+    padding: 20px; /* Espaçamento interno */
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .container {
+      width: 95%; /* Ajusta a largura em telas menores */
+      padding: 10px; /* Reduz o espaçamento interno */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    body {
+      font-size: 14px; /* Reduz o tamanho da fonte em dispositivos muito pequenos */
+    }
+  
+    button {
+      font-size: 14px; /* Reduz o tamanho da fonte do botão */
+      padding: 8px 16px; /* Ajusta o espaçamento interno do botão */
+    }
+  }
+  

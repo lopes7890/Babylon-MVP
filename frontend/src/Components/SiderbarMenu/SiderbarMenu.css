@@ -1,0 +1,56 @@
+/* Container do menu lateral */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Esconde o menu fora da tela */
+    height: 100vh; /* Altura total da tela */
+    width: 250px; /* Largura do menu */
+    background-color: #f4f4f4; /* Cor de fundo */
+    transition: left 0.3s; /* Transição suave para o movimento */
+    overflow-y: auto; /* Adiciona rolagem se necessário */
+    border-right: 1px solid #ddd; /* Borda para separar */
+    z-index: 1000; /* Garante que o menu esteja sobre outros elementos */
+ padding:0;
+  }
+  
+  /* Menu aberto */
+  .sidebar.open {
+    left: 0; /* Move o menu para a tela */
+  }
+  
+  /* Botão para abrir o menu */
+  .sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001; /* Garante que o botão esteja sobre o menu */
+  }
+  
+  .sidebar-menu {
+    padding: 20px;
+  }
+  
+  .sidebar-menu ul {
+    list-style-type: none;
+    padding: 40px;
+    margin: 0px;
+  }
+  #menu-hamburger{
+   width: 20px;
+  }
+  .sidebar-menu li {
+    margin: 15px 0;
+  }
+  
+  .sidebar-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .sidebar-menu a:hover {
+    color: #007bff;
+  }
+  

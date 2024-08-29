@@ -1,0 +1,175 @@
+/* Estilização geral do container do perfil */
+
+
+
+.profile-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #a8c5eb;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+}
+.editar{
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+ width: 30px;
+  color: #b9a2a2;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  
+  
+}
+/* Estilização da seção de informações do usuário */
+.user-info {
+  background-color: #52a3e2;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Avatar do usuário */
+.avatar {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background-color: #00000017;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Ocultando o input de arquivo */
+#avatar-upload {
+  display: none;
+}
+
+
+
+/* Estilização das estatísticas do usuário */
+.stats  {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  
+}
+.stats p{
+  color: white
+}
+/* Estilização da seção de saldo e botão */
+.balance {
+  margin-top: 10px;
+  
+}
+.balance p{
+  color: white;
+}
+
+.balance button {
+  width: 100%;
+  max-width: 350px;
+  background-color: #844dff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Seção do best-seller */
+.best-seller {
+  background-color: #52a3e2;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.best-seller .book-cover {
+  width: 60px;
+  height: 80px;
+  background-color: #f469c7;
+  margin: 10px auto;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Seção dos livros publicados */
+.published-books {
+  background-color: #52a3e2;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.published-books .books {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.published-books .book-cover {
+  width: 60px;
+  height: 80px;
+  background-color: #f469c7;
+  margin: 10px 0;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 15px;
+  }
+
+  .user-info, .best-seller, .published-books {
+    width: 90%;
+  }
+
+  .published-books .books {
+    flex-direction: column;
+  }
+
+  .published-books .book-cover {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .balance button {
+    padding: 8px 16px;
+  }
+
+  .best-seller .book-cover,
+  .published-books .book-cover {
+    width: 50px;
+    height: 70px;
+  }
+
+  .avatar-edit-icon {
+    font-size: 12px;
+    padding: 4px;
+  }
+}
