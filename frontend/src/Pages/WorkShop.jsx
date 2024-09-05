@@ -9,7 +9,7 @@ function WorkShop() {
   // Fetching projects and published books from the backend
   useEffect(() => {
     // Fetch user's projects
-    fetch('/api/user-projects')
+    fetch('https://babylon-mvp-backend.onrender.com/api/user-projects')
       .then(response => response.json())
       .then(data => {
         setProjects(data.projects || []);

@@ -7,7 +7,7 @@ function Library() {
 
   // Função para buscar os dados da biblioteca do backend
   useEffect(() => {
-    fetch('/api/library') 
+    fetch('https://babylon-mvp-backend.onrender.com/api/library') 
       .then(response => response.json())
       .then(data => setLibrary(data.books))
       .catch(error => console.error('Erro ao buscar biblioteca:', error));

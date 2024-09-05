@@ -1,12 +1,64 @@
-// LoginSignup.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './css/LoginSinup.css';
 
 function LoginSignup() {
   const [isSignup, setIsSignup] = useState(false);
+  const [formData, setFormData] = useState({
+    nome: '',
+    gmail: '',
+    telefone: '',
+    senha: '',
+    idade: '',
+    genero: '',
+  });
+
+  const navigate = useNavigate();
 
   const handleToggle = () => {
     setIsSignup(!isSignup);
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const url = isSignup 
+      ? 'https://babylon-mvp-backend.onrender.com/usuario' 
+      : 'https://babylon-mvp-backend.onrender.com/api/login';
+      
+    const body = JSON.stringify(formData);
+
+    try {
+      const response = await fetch(url,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body,
+      });
+
+      const text = await response.text();
+
+      if (response.ok) {
+        const data = text ? JSON.parse(text) : {};
+        alert(isSignup ? 'Conta criada com sucesso!' : 'Login realizado com sucesso!');
+      
+        navigate('/');  
+      } else {
+        const data = text ? JSON.parse(text) : {};
+        alert(data.message || 'Ocorreu um erro.');
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+      alert('Erro ao enviar os dados.');
+    }
   };
 
   return (
@@ -15,10 +67,55 @@ function LoginSignup() {
         {isSignup ? (
           <div className="form-section">
             <h2>Crie sua Conta</h2>
-            <form>
-              <input type="text" placeholder="Nome" required />
-              <input type="email" placeholder="E-mail" required />
-              <input type="password" placeholder="Senha" required />
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="nome"
+                placeholder="Nome"
+                value={formData.nome}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="email"
+                name="gmail"
+                placeholder="Gmail"
+                value={formData.gmail}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                name="telefone"
+                placeholder="Telefone"
+                value={formData.telefone}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="password"
+                name="senha"
+                placeholder="Senha"
+                value={formData.senha}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="number"
+                name="idade"
+                placeholder="Idade"
+                value={formData.idade}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                name="genero"
+                placeholder="Gênero"
+                value={formData.genero}
+                onChange={handleChange}
+                required
+              />
               <button type="submit">Criar Conta</button>
             </form>
             <p className="switch-link">
@@ -28,9 +125,23 @@ function LoginSignup() {
         ) : (
           <div className="form-section">
             <h2>Login</h2>
-            <form>
-              <input type="email" placeholder="E-mail" required />
-              <input type="password" placeholder="Senha" required />
+            <form onSubmit={handleSubmit}>
+              <input
+                type="email"
+                name="gmail"
+                placeholder="Gmail"
+                value={formData.gmail}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="password"
+                name="senha"
+                placeholder="Senha"
+                value={formData.senha}
+                onChange={handleChange}
+                required
+              />
               <button type="submit">Entrar</button>
             </form>
             <p className="switch-link">

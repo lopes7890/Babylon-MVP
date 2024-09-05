@@ -12,7 +12,7 @@ function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetch("/api/user-profile")
+    fetch("https://babylon-mvp-backend.onrender.com/api/user-profile")
       .then((response) => response.json())
       .then((data) => {
         setUserData(data.user);
