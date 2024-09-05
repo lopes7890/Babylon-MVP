@@ -1,0 +1,85 @@
+/* Recommendations.css */
+.recommendations-page {
+  padding: 20px;
+  background-color:#cfdadd;
+
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 56px;
+  margin-bottom: 78px;
+}
+
+.book-item {
+  display: block;
+  width: 150px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+.book-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.book-item h3 {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.book-item p {
+  font-size: 10px;
+  color: #666;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .book-item {
+    width: 120px;
+  }
+
+  .book-item h3 {
+    font-size: 14px;
+  }
+
+  .book-item p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .recommendations-page {
+    padding: 10px;
+  }
+
+  .book-list {
+    gap: 10px;
+  }
+
+  .book-item {
+    width: 100px;
+  }
+
+  .book-item h3 {
+    font-size: 12px;
+  }
+
+  .book-item p {
+    font-size: 10px;
+  }
+}
