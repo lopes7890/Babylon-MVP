@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./css/Profile.css";
 import editar from "../assets/profile_edit.png";
-import Modal from "../Components/Modal/Modal"; // Importa o componente Modal
+import Modal from "../Components/Modal/Modal"; 
 import perfil from "../assets/perfil_padrao.png";
 
 function Profile() {
