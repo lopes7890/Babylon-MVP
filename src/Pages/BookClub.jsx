@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import './css/BookClub.css';
+import React, { useEffect, useState } from "react";
+import "./css/BookClub.css";
 
 function BookClub() {
-  const [bookClub, setBookClub] = useState({ name: '', book: {}, members: [] });
-  const [selectedBook, setSelectedBook] = useState(null); 
+  const [bookClub, setBookClub] = useState({ name: "", book: {}, members: [] });
+  const [selectedBook, setSelectedBook] = useState(null);
 
   // Função para buscar os dados do clube do livro do backend
   useEffect(() => {
-    fetch('/api/book-club')
-      .then(response => response.json())
-      .then(data => setBookClub(data))
-      .catch(error => console.error('Erro ao buscar clube do livro:', error));
+    fetch("/api/book-club")
+      .then((response) => response.json())
+      .then((data) => setBookClub(data))
+      .catch((error) => console.error("Erro ao buscar clube do livro:", error));
   }, []);
 
-  // Função para enviar o livro selecionado para o backend e salvar
   const handleBookClick = (book) => {
-    setSelectedBook(book); 
+    setSelectedBook(book);
 
-    
-    fetch('/api/book-club/select-book', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ book })
+    fetch("/api/book-club/select-book", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ book }),
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Livro selecionado salvo com sucesso:', data);
-      setBookClub(prevClub => ({ ...prevClub, book: book }));
-    })
-    .catch(error => console.error('Erro ao salvar o livro selecionado:', error));
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Livro selecionado salvo com sucesso:", data);
+        setBookClub((prevClub) => ({ ...prevClub, book: book }));
+      })
+      .catch((error) =>
+        console.error("Erro ao salvar o livro selecionado:", error)
+      );
   };
 
   return (
@@ -38,7 +38,7 @@ function BookClub() {
         <div className="club-book">
           <p>Livro Atual:</p>
           <div className="book-cover">
-            <p>{bookClub.book.name || 'Nenhum livro selecionado'}</p>
+            <p>{bookClub.book.name || "Nenhum livro selecionado"}</p>
           </div>
         </div>
         <div className="club-members">
@@ -46,7 +46,8 @@ function BookClub() {
           <ul>
             {bookClub.members.map((member, index) => (
               <li key={index}>
-                <span className={`icon member${index + 1}`}></span> {member.name}
+                <span className={`icon member${index + 1}`}></span>{" "}
+                {member.name}
               </li>
             ))}
           </ul>
