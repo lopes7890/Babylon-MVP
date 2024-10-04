@@ -23,6 +23,7 @@ function SidebarMenu() {
             <li><Link to="/bookclub">Clube do livro</Link></li>
             <li><Link to="/feed">Publicações</Link></li>
             <li><Link to="/home">Configurações</Link></li>
+           
           </ul>
         </div>
       </div>

@@ -11,6 +11,7 @@ import Lives from './Pages/Lives';
 import WorkShop from './Pages/WorkShop';
 import Library from './Pages/Library';
 import Feed from './Pages/Feed';
+import BookClub from './Pages/BookClub';
 
 
 // import Login from './Pages/Login';
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/workshop" element={<WorkShop/>} />
           <Route path="/library" element={<Library/>} />
           <Route path="/feed" element={<Feed/>} />
+          <Route path="/bookclub" element={<BookClub/>} />
 
 
         </Routes>
