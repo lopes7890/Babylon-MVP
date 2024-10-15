@@ -9,7 +9,7 @@ const RandomBooks = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    
+
     const randomPage = Math.floor(Math.random() * 100) + 1;
     const fetchBooks = async () => {
       try {
@@ -17,7 +17,6 @@ const RandomBooks = () => {
           `https://gutendex.com/books/?page=${randomPage}&page_size=10`
         );
         const data = await response.json();
-
         if (data.error) {
           setError(data.error);
         } else {
