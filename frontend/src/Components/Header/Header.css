@@ -1,0 +1,125 @@
+/* Header.css */
+.App-header {
+  background-color: #bd9ee0;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li {
+  position: relative;
+}
+
+.nav-list li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-list li a:hover {
+  text-decoration: underline;
+}
+
+.auth-button {
+  display: flex;
+  align-items: center;
+}
+
+.auth-button button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.auth-button button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .nav-list {
+    gap: 15px;
+  }
+
+  .nav-list li a {
+    font-size: 14px;
+  }
+
+  .auth-button button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-list {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+  }
+  .btn{
+    width: 400px;
+    }
+    
+  .nav-list li a {
+    font-size: 14px;
+  }
+
+  .auth-button {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .auth-button button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header {
+    padding: 10px 15px;
+  }
+
+  .nav-list li a {
+    font-size: 12px;
+  }
+  .btn{
+    width: 400px;
+    }
+    
+  .auth-button button {
+    font-size: 14px;
+    padding: 10px 0;
+  }
+}
