@@ -9,6 +9,7 @@ const RandomBooks = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
+    
     const randomPage = Math.floor(Math.random() * 100) + 1;
     const fetchBooks = async () => {
       try {
