@@ -36,6 +36,7 @@ function BookSearch() {
             <h3>{book.volumeInfo.title}</h3>
             <p>{book.volumeInfo.authors?.join(', ')}</p>
             <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
+            
           </div>
         ))}
       </div>

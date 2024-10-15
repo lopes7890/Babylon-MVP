@@ -7,7 +7,7 @@ function BookClub() {
 
   // Função para buscar os dados do clube do livro do backend
   useEffect(() => {
-    fetch("/api/book-club")
+    fetch("https://babylon-mvp-backend.onrender.com/club")
       .then((response) => response.json())
       .then((data) => setBookClub(data))
       .catch((error) => console.error("Erro ao buscar clube do livro:", error));

@@ -12,6 +12,7 @@ function BookDetail() {
       try {
         const response = await axios.get(
           `https://www.googleapis.com/books/v1/volumes/${id}`
+          // `https://www.googleapis.com/books/v1/volumes/${id}`
         );
         setBook(response.data);
       } catch (error) {

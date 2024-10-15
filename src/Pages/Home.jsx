@@ -5,6 +5,7 @@ import SiderbarMenu from '../Components/SiderbarMenu/SiderbarMenu';
 import Recommendations from '../Components/Recommendations/Recommendations';
 import BookSearch from '../Components/BookSearch/BookSearch';
 import FooterNav from '../Components/FooterNav/FooterNav';
+import RandomBooks from '../Components/RandomBooks/RandomBooks';
 
 
 function Home() {
@@ -14,8 +15,9 @@ function Home() {
     
       <SiderbarMenu />
       {/* <SearchBar /> */}
-      <BookSearch /> 
-      <Recommendations />
+      {/* <BookSearch />  */}
+      {/* <Recommendations /> */}
+      <RandomBooks/>
       <FooterNav />
     </div>
   );

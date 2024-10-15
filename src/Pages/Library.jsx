@@ -7,7 +7,7 @@ function Library() {
 
   // Função para buscar os dados da biblioteca do backend
   useEffect(() => {
-    fetch('https://babylon-mvp-backend.onrender.com/Livros')
+    fetch('https://babylon-mvp-backend.onrender.com/library"')
       .then(response => response.json())
       .then(data => setLibrary(data.books))
       .catch(error => console.error('Erro ao buscar biblioteca:', error));
@@ -23,7 +23,7 @@ function Library() {
     setSelectedBook(book); // Define o livro selecionado no estado
 
     // Enviar livro clicado ao backend
-    fetch('https://babylon-mvp-backend.onrender.com/Livros', {
+    fetch('https://babylon-mvp-backend.onrender.com/book/:title', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

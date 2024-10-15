@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Recommendations.css'
+
+import RandomBooks from '../RandomBooks/RandomBooks';
 function Recommendations() {
   const [books, setBooks] = useState([]);
 
@@ -31,6 +33,8 @@ function Recommendations() {
             <p>{book.volumeInfo.authors?.join(', ')}</p>
           </Link>
         ))}
+      
+        <RandomBooks/>
       </div>
     </div>
   );
