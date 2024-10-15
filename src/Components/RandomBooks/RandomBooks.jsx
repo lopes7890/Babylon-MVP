@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { FaSearch, FaBook, FaSpinner } from 'react-icons/fa'; 
-import './RadomBooks.css';
+import React, { useEffect, useState } from "react";
+import { FaSearch, FaBook, FaSpinner } from "react-icons/fa";
+import "./RadomBooks.css";
 
 const RandomBooks = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const randomPage = Math.floor(Math.random() * 100) + 1;
     const fetchBooks = async () => {
       try {
-        const response = await fetch(`https://gutendex.com/books/?page=${randomPage}&page_size=10`);
+        const response = await fetch(
+          `https://gutendex.com/books/?page=${randomPage}&page_size=10`
+        );
         const data = await response.json();
 
         if (data.error) {
@@ -23,7 +25,7 @@ const RandomBooks = () => {
 
         setLoading(false);
       } catch (error) {
-        setError('Erro ao encontrar livros');
+        setError("Erro ao encontrar livros");
         setLoading(false);
       }
     };
@@ -31,9 +33,11 @@ const RandomBooks = () => {
     fetchBooks();
   }, []);
 
-  const filteredBooks = books.filter(book => {
-    const titleMatch = book.title.toLowerCase().includes(searchQuery.toLowerCase());
-    const authorMatch = book.authors?.some(author =>
+  const filteredBooks = books.filter((book) => {
+    const titleMatch = book.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    const authorMatch = book.authors?.some((author) =>
       author.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     return titleMatch || authorMatch;
@@ -57,7 +61,7 @@ const RandomBooks = () => {
       <h2 className="books-title">Livros</h2>
 
       <div className="search-container">
-        <input 
+        <input
           type="text"
           placeholder="Procure por um livro ou autor"
           value={searchQuery}
@@ -72,23 +76,25 @@ const RandomBooks = () => {
           filteredBooks.map((book, index) => (
             <li key={index} className="book-item">
               <h3 className="book-title">
-                <FaBook className="book-icon" /> 
+                <FaBook className="book-icon" />
                 {book.title}
               </h3>
               <p className="book-authors">
-                Authors: {book.authors?.map(a => a.name).join(', ') || 'Unknown Author'}
+                Authors:{" "}
+                {book.authors?.map((a) => a.name).join(", ") ||
+                  "Unknown Author"}
               </p>
-              <a 
-                href={book.formats['text/html'] || '#'} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href={book.formats["text/html"] || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="book-link"
               >
                 Read
               </a>
-              <img 
-                src={book.formats['image/jpeg'] || 'default-image-link.jpg'} 
-                alt={`Cover of ${book.title}`} 
+              <img
+                src={book.formats["image/jpeg"] || "default-image-link.jpg"}
+                alt={`Cover of ${book.title}`}
                 className="book-image"
               />
             </li>
