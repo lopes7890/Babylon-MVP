@@ -3,13 +3,19 @@ import Header from '../Components/Header/Header';
 import React from 'react';
 import SidebarMenu from '../Components/SiderbarMenu/SiderbarMenu';
 
-export default function Layout({ children }) {
+export default function Layout({ children, condicao }) {
   return (
     <>
-      <Header />
-      <SidebarMenu />
-      {children}
-      <FooterNav />
+      {condicao ? (
+        <>
+          <Header />
+          <SidebarMenu />
+          {children}
+          <FooterNav />
+        </>
+      ) : (
+        <>{children}</>
+      )}
     </>
   );
 }
