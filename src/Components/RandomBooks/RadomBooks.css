@@ -1,153 +1,162 @@
 /* Página principal dos livros */
 .books-container {
-    padding: 20px;
-    background-color: #cfdadd; /* Mesma cor de fundo da outra página */
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
+  padding: 20px;
+  background-color: #cfdadd; /* Mesma cor de fundo da outra página */
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Título da seção */
+.books-title {
+  font-size: 24px; /* Mantendo o estilo da outra página */
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #333;
+  font-size: 18px;
+}
+
+.loading-icon {
+  font-size: 50px;
+  color: #007bff;
+  margin-bottom: 10px;
+  animation: spin 1s infinite linear;
+}
+
+.align-to-the-end {
+  flex: 1;
+}
+
+/* Animação de rotação */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  /* Título da seção */
-  .books-title {
-    font-size: 24px; /* Mantendo o estilo da outra página */
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+  100% {
+    transform: rotate(360deg);
   }
-  .loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    color: #333;
-    font-size: 18px;
-  }
-  
-  .loading-icon {
-    font-size: 50px;
-    color: #007bff;
-    margin-bottom: 10px;
-    animation: spin 1s infinite linear;
-  }
-  
-  /* Animação de rotação */
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  /* Lista de livros */
-  .books-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Alinhamento centralizado */
-    gap: 56px;
-    margin-bottom: 78px;
-    padding: 0;
-    list-style-type: none;
-  }
-  
-  /* Estilo de cada item de livro */
+}
+/* Lista de livros */
+.books-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 78px;
+  padding: 0;
+  list-style-type: none;
+}
+
+/* Estilo de cada item de livro */
+.book-item {
+  display: block;
+  /* min-width: 250px; */
+  min-width: 200px;
+  max-width: 300px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombras mais leves */
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+  transition: transform 0.2s ease;
+  flex: 1;
+}
+
+.book-item:hover {
+  transform: scale(1.05);
+}
+
+/* Título do livro */
+.book-title {
+  font-size: 16px; /* Tamanho menor para manter a consistência */
+  margin: 10px 0;
+  color: #444;
+}
+
+/* Autores */
+.book-authors {
+  font-size: 10px; /* Adaptado da outra página */
+  color: #666;
+}
+
+/* Link de leitura */
+.book-link {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.book-link:hover {
+  background-color: #0056b3;
+}
+
+/* Imagem da capa do livro */
+.book-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px; /* Adaptado da outra página */
+  margin-top: 15px;
+  max-height: 250px;
+  object-fit: cover;
+}
+
+/* Loading e erro */
+.loading,
+.error {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Responsividade para tablets */
+@media (max-width: 768px) {
   .book-item {
-    display: block;
-    width: 150px; /* Adaptado da outra página */
-    text-align: center;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombras mais leves */
-    padding: 10px;
-    text-decoration: none;
-    color: #000;
-    transition: transform 0.2s ease;
+    min-width: 190px;
+    max-width: 250px;
   }
-  
-  .book-item:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Título do livro */
+
   .book-title {
-    font-size: 16px; /* Tamanho menor para manter a consistência */
-    margin: 10px 0;
-    color: #444;
+    font-size: 14px;
   }
-  
-  /* Autores */
+
   .book-authors {
-    font-size: 10px; /* Adaptado da outra página */
-    color: #666;
+    font-size: 12px;
   }
-  
-  /* Link de leitura */
-  .book-link {
-    display: inline-block;
-    text-decoration: none;
-    color: #fff;
-    background-color: #007bff;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 480px) {
+  .books-container {
+    padding: 10px;
   }
-  
-  .book-link:hover {
-    background-color: #0056b3;
+
+  .books-list {
+    gap: 10px;
   }
-  
-  /* Imagem da capa do livro */
-  .book-image {
-    width: 100%;
-    height: auto;
-    border-radius: 4px; /* Adaptado da outra página */
-    margin-top: 15px;
-    max-height: 250px;
-    object-fit: cover;
+
+  .book-item {
+    min-width: 150px;
+    max-width: 200px;
   }
-  
-  /* Loading e erro */
-  .loading, .error {
-    font-size: 1.5rem;
-    color: #333;
+
+  .book-title {
+    font-size: 12px;
   }
-  
-  /* Responsividade para tablets */
-  @media (max-width: 768px) {
-    .book-item {
-      width: 120px;
-    }
-  
-    .book-title {
-      font-size: 14px;
-    }
-  
-    .book-authors {
-      font-size: 12px;
-    }
+
+  .book-authors {
+    font-size: 10px;
   }
-  
-  /* Responsividade para dispositivos móveis */
-  @media (max-width: 480px) {
-    .books-container {
-      padding: 10px;
-    }
-  
-    .books-list {
-      gap: 10px;
-    }
-  
-    .book-item {
-      width: 100px;
-    }
-  
-    .book-title {
-      font-size: 12px;
-    }
-  
-    .book-authors {
-      font-size: 10px;
-    }
-  }
-  
+}

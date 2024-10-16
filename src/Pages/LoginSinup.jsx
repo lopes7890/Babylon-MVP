@@ -7,10 +7,10 @@ function LoginSignup() {
   const [formData, setFormData] = useState({
     name: '',
     gmail: '',
-    phone: '',
-    password: '',
-    age: '',
-    gender: '',
+    telefone: '',
+    senha: '',
+    idade: '',
+    genero: '',
   });
 
   const navigate = useNavigate();
@@ -30,8 +30,12 @@ function LoginSignup() {
     e.preventDefault();
 
     const url = isSignup
-      ? 'https://babylon-mvp-backend.onrender.com/user'
+      ? 'https://babylon-mvp-backend.onrender.com/usuario'
       : 'https://babylon-mvp-backend.onrender.com/login';
+
+    // const url = isSignup
+    //   ? 'http://localhost:8080/usuario'
+    //   : 'http://localhost:8080/login';
 
     const body = JSON.stringify(formData);
 
@@ -74,7 +78,7 @@ function LoginSignup() {
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
-                name="name"
+                name="nome"
                 placeholder="Nome"
                 value={formData.nome}
                 onChange={handleChange}
@@ -90,7 +94,7 @@ function LoginSignup() {
               />
               <input
                 type="text"
-                name="phone"
+                name="telefone"
                 placeholder="Telefone"
                 value={formData.telefone}
                 onChange={handleChange}
@@ -98,7 +102,7 @@ function LoginSignup() {
               />
               <input
                 type="password"
-                name="password"
+                name="senha"
                 placeholder="Senha"
                 value={formData.senha}
                 onChange={handleChange}
@@ -106,7 +110,7 @@ function LoginSignup() {
               />
               <input
                 type="number"
-                name="age"
+                name="idade"
                 placeholder="Idade"
                 value={formData.idade}
                 onChange={handleChange}
@@ -114,7 +118,7 @@ function LoginSignup() {
               />
               <input
                 type="text"
-                name="gender"
+                name="genero"
                 placeholder="Gênero"
                 value={formData.genero}
                 onChange={handleChange}
@@ -141,7 +145,7 @@ function LoginSignup() {
               />
               <input
                 type="password"
-                name="password"
+                name="senha"
                 placeholder="Senha"
                 value={formData.senha}
                 onChange={handleChange}

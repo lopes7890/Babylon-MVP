@@ -7,18 +7,17 @@ import BookSearch from '../Components/BookSearch/BookSearch';
 import FooterNav from '../Components/FooterNav/FooterNav';
 import RandomBooks from '../Components/RandomBooks/RandomBooks';
 
-
 function Home() {
   return (
     <div>
-      <Header />
-    
-      <SiderbarMenu />
+      {/* <Header /> */}
+
+      {/* <SiderbarMenu /> */}
       {/* <SearchBar /> */}
       {/* <BookSearch />  */}
       {/* <Recommendations /> */}
-      <RandomBooks/>
-      <FooterNav />
+      <RandomBooks />
+      {/* <FooterNav /> */}
     </div>
   );
 }
