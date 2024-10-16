@@ -33,10 +33,6 @@ function LoginSignup() {
       ? 'https://babylon-mvp-backend.onrender.com/user'
       : 'https://babylon-mvp-backend.onrender.com/login';
 
-    // const url = isSignup
-    //   ? 'http://localhost:8080/user'
-    //   : 'http://localhost:8080/login';
-
     const body = JSON.stringify(formData);
 
     try {
