@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from './Pages/Home';
 import FooterNav from './Components/FooterNav/FooterNav';
 import Header from './Components/Header/Header';
@@ -17,10 +17,14 @@ import Layout from './template/layout';
 // import Login from './Pages/Login';
 
 const App = () => {
+  const rotasSemTemplate = ['/login'];
+  const paginaAtual = useLocation();
+  const usarTemplate = !rotasSemTemplate.includes(paginaAtual.pathname);
+
   return (
     <>
       <div>
-        <Layout>
+        <Layout condicao={usarTemplate}>
           <Routes>
             <Route path="/login" element={<LoginSignup />} />
             <Route path="/" element={<Home />} />
