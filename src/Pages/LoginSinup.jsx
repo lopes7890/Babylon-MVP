@@ -5,12 +5,12 @@ import './css/LoginSinup.css';
 function LoginSignup() {
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState({
-    nome: '',
+    name: '',
     gmail: '',
-    telefone: '',
-    senha: '',
-    idade: '',
-    genero: '',
+    phone: '',
+    password: '',
+    age: '',
+    gender: '',
   });
 
   const navigate = useNavigate();
@@ -29,14 +29,18 @@ function LoginSignup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = isSignup 
-      ? 'https://babylon-mvp-backend.onrender.com/usuario' 
-      : 'https://babylon-mvp-backend.onrender.com/api/login';
-      
+    const url = isSignup
+      ? 'https://babylon-mvp-backend.onrender.com/user'
+      : 'https://babylon-mvp-backend.onrender.com/login';
+
+    // const url = isSignup
+    //   ? 'http://localhost:8080/user'
+    //   : 'http://localhost:8080/login';
+
     const body = JSON.stringify(formData);
 
     try {
-      const response = await fetch(url,{
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,9 +52,13 @@ function LoginSignup() {
 
       if (response.ok) {
         const data = text ? JSON.parse(text) : {};
-        alert(isSignup ? 'Conta criada com sucesso!' : 'Login realizado com sucesso!');
-      
-        navigate('/');  
+        alert(
+          isSignup
+            ? 'Conta criada com sucesso!'
+            : 'Login realizado com sucesso!'
+        );
+
+        navigate('/');
       } else {
         const data = text ? JSON.parse(text) : {};
         alert(data.message || 'Ocorreu um erro.');
@@ -70,7 +78,7 @@ function LoginSignup() {
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
-                name="nome"
+                name="name"
                 placeholder="Nome"
                 value={formData.nome}
                 onChange={handleChange}
@@ -86,7 +94,7 @@ function LoginSignup() {
               />
               <input
                 type="text"
-                name="telefone"
+                name="phone"
                 placeholder="Telefone"
                 value={formData.telefone}
                 onChange={handleChange}
@@ -94,7 +102,7 @@ function LoginSignup() {
               />
               <input
                 type="password"
-                name="senha"
+                name="password"
                 placeholder="Senha"
                 value={formData.senha}
                 onChange={handleChange}
@@ -102,7 +110,7 @@ function LoginSignup() {
               />
               <input
                 type="number"
-                name="idade"
+                name="age"
                 placeholder="Idade"
                 value={formData.idade}
                 onChange={handleChange}
@@ -110,7 +118,7 @@ function LoginSignup() {
               />
               <input
                 type="text"
-                name="genero"
+                name="gender"
                 placeholder="Gênero"
                 value={formData.genero}
                 onChange={handleChange}
@@ -119,7 +127,8 @@ function LoginSignup() {
               <button type="submit">Criar Conta</button>
             </form>
             <p className="switch-link">
-              Já tem uma conta? <button onClick={handleToggle}>Faça login aqui</button>
+              Já tem uma conta?{' '}
+              <button onClick={handleToggle}>Faça login aqui</button>
             </p>
           </div>
         ) : (
@@ -136,7 +145,7 @@ function LoginSignup() {
               />
               <input
                 type="password"
-                name="senha"
+                name="password"
                 placeholder="Senha"
                 value={formData.senha}
                 onChange={handleChange}
@@ -145,7 +154,8 @@ function LoginSignup() {
               <button type="submit">Entrar</button>
             </form>
             <p className="switch-link">
-              Não tem uma conta? <button onClick={handleToggle}>Crie uma aqui</button>
+              Não tem uma conta?{' '}
+              <button onClick={handleToggle}>Crie uma aqui</button>
             </p>
           </div>
         )}
