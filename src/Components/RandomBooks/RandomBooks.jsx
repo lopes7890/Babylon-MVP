@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { FaSearch, FaBook, FaSpinner } from "react-icons/fa";
-import "./RadomBooks.css";
+import React, { useEffect, useState } from 'react';
+import { FaSearch, FaBook, FaSpinner } from 'react-icons/fa';
+import './RadomBooks.css';
+import limitarCaracteres from '../../shared/limitarCaracteres';
 
 const RandomBooks = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const randomPage = Math.floor(Math.random() * 100) + 1;
@@ -24,7 +25,7 @@ const RandomBooks = () => {
 
         setLoading(false);
       } catch (error) {
-        setError("Erro ao encontrar livros");
+        setError('Erro ao encontrar livros');
         setLoading(false);
       }
     };
@@ -76,15 +77,16 @@ const RandomBooks = () => {
             <li key={index} className="book-item">
               <h3 className="book-title">
                 <FaBook className="book-icon" />
-                {book.title}
+                {limitarCaracteres(book.title)}
               </h3>
               <p className="book-authors">
-                Authors:{" "}
-                {book.authors?.map((a) => a.name).join(", ") ||
-                  "Unknown Author"}
+                Authors:{' '}
+                {book.authors?.map((a) => a.name).join(', ') ||
+                  'Unknown Author'}
               </p>
+              <div className="align-to-the-end"></div>
               <a
-                href={book.formats["text/html"] || "#"}
+                href={book.formats['text/html'] || '#'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="book-link"
@@ -92,7 +94,7 @@ const RandomBooks = () => {
                 Read
               </a>
               <img
-                src={book.formats["image/jpeg"] || "default-image-link.jpg"}
+                src={book.formats['image/jpeg'] || 'default-image-link.jpg'}
                 alt={`Cover of ${book.title}`}
                 className="book-image"
               />
