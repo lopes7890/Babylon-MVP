@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaSearch, FaBook, FaSpinner } from 'react-icons/fa';
 import './RadomBooks.css';
 import limitarCaracteres from '../../shared/limitarCaracteres';
+import useFetchCachedBooks from '../../hooks/useCacheFetchBooks';
 
 const RandomBooks = () => {
   const [books, setBooks] = useState([]);
@@ -10,27 +11,7 @@ const RandomBooks = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    const randomPage = Math.floor(Math.random() * 100) + 1;
-    const fetchBooks = async () => {
-      try {
-        const response = await fetch(
-          `https://gutendex.com/books/?page=${randomPage}&page_size=10`
-        );
-        const data = await response.json();
-        if (data.error) {
-          setError(data.error);
-        } else {
-          setBooks(data.results);
-        }
-
-        setLoading(false);
-      } catch (error) {
-        setError('Erro ao encontrar livros');
-        setLoading(false);
-      }
-    };
-
-    fetchBooks();
+    useFetchCachedBooks({ setBooks, setError, setLoading, withCache: true });
   }, []);
 
   const filteredBooks = books.filter((book) => {
