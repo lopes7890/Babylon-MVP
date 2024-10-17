@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaSearch, FaBook, FaSpinner } from 'react-icons/fa';
+
 import './RadomBooks.css';
 import limitarCaracteres from '../../shared/limitarCaracteres';
 import useFetchCachedBooks from '../../hooks/useCacheFetchBooks';
@@ -9,6 +10,8 @@ const RandomBooks = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const searchFilter = useRef(null);
 
   useEffect(() => {
     useFetchCachedBooks({ setBooks, setError, setLoading, withCache: true });
@@ -41,13 +44,19 @@ const RandomBooks = () => {
     <div className="books-container">
       <h2 className="books-title">Livros</h2>
 
-      <div className="search-container">
+      <div
+        className="search-container"
+        onClick={() => {
+          searchFilter.current.focus();
+        }}
+      >
         <input
           type="text"
           placeholder="Procure por um livro ou autor"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="search-input"
+          ref={searchFilter}
         />
         <FaSearch className="search-icon" />
       </div>
