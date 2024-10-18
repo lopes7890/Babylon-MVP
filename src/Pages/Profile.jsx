@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { FaUpload, FaEdit } from "react-icons/fa"; 
+import { ToastContainer, toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css";
 import "./css/Profile.css";
-import editar from "../assets/profile_edit.png";
-import Modal from "../Components/Modal/Modal"; 
+import Modal from "../Components/Modal/Modal";
 import perfil from "../assets/perfil_padrao.png";
 
 function Profile() {
@@ -37,7 +39,7 @@ function Profile() {
     };
     reader.readAsDataURL(file);
 
-    setIsModalOpen(true); // Mostra o modal ao selecionar uma nova imagem
+    setIsModalOpen(true);
   };
 
   const saveAvatar = () => {
@@ -50,12 +52,20 @@ function Profile() {
         body: formData,
       })
         .then((response) => response.json())
-        .then((data) => {
-          alert("Avatar atualizado com sucesso!");
-          setIsModalOpen(false); // Fecha o modal após salvar o avatar
+        .then(() => {
+          toast.success("Avatar atualizado com sucesso!"); 
+          setIsModalOpen(false); 
         })
-        .catch((error) => console.error("Erro ao atualizar o avatar:", error));
+        .catch((error) => {
+          toast.error("Erro ao atualizar o avatar."); 
+          console.error("Erro ao atualizar o avatar:", error);
+        });
     }
+  };
+
+  const handleWithdraw = () => {
+    // Simulação de saque
+    toast.success("Saque realizado com sucesso!"); // Notificação de sucesso ao sacar
   };
 
   return (
@@ -69,7 +79,7 @@ function Profile() {
         >
           <input type="file" id="avatar-upload" onChange={handleAvatarChange} />
           <label htmlFor="avatar-upload" className="avatar-edit-icon">
-            <img className="editar" src={editar} alt="Editar avatar" />
+            <FaUpload className="icon-upload" /> {/* Ícone de upload */}
           </label>
         </div>
         <h2>{userData.name}</h2>
@@ -83,7 +93,7 @@ function Profile() {
         </div>
         <div className="balance">
           <p>Saldo: R${userData.balance}</p>
-          <button onClick={() => alert("Saque realizado!")}>Sacar</button>
+          <button onClick={handleWithdraw}>Sacar</button>
         </div>
       </div>
 
@@ -106,6 +116,7 @@ function Profile() {
               style={{ backgroundImage: `url(${book.coverUrl})` }}
             >
               <p>{book.title}</p>
+              <FaEdit className="icon-edit" /> {/* Ícone de edição */}
             </div>
           ))}
         </div>
@@ -116,6 +127,9 @@ function Profile() {
         onClose={() => setIsModalOpen(false)}
         onSave={saveAvatar}
       />
+
+      {/* Container do Toastify */}
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
     </div>
   );
 }
