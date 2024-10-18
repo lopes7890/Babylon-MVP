@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 70%;
+  width: 60%;
   transition: width 1s;
 }
 
@@ -166,6 +166,10 @@
 
   .book-authors {
     font-size: 12px;
+  }
+
+  .search-container {
+    width: 70%;
   }
 }
 
