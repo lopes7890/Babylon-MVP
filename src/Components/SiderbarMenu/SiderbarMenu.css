@@ -36,6 +36,7 @@
 
 .sidebar-menu {
   padding: 20px;
+  margin: 35px;
 }
 
 .sidebar-menu ul {
@@ -68,9 +69,11 @@
   margin-right: 10px;
   font-size: 20px;
   color: #666; 
+  
 }
 
 .menu-toggle-icon {
   font-size: 28px;
   cursor: pointer;
+  
 }
