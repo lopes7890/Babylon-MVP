@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { FaExclamationCircle } from 'react-icons/fa';
 import './css/LoginSinup.css';
+import { useLogged } from '../contexts/loggedContext';
+import useGetQueryParameters from '../utils/useGetQueryParameters';
 
 function LoginSignup() {
+  const { login, setUserData } = useLogged();
   const [isSignup, setIsSignup] = useState(false);
+
+  // const [searchParams] = useSearchParams();
+  // const loginOrSingup = searchParams.get('auth');
+
+  const [auth] = useGetQueryParameters('auth');
+  useEffect(() => {
+    if (auth === 'signup') setIsSignup(true);
+  }, []);
+
   const [formData, setFormData] = useState({
     nome: '',
     gmail: '',
@@ -31,11 +43,11 @@ function LoginSignup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const url = isSignup 
-      ? 'https://babylon-mvp-backend.onrender.com/usuario' 
-      : 'https://babylon-mvp-backend.onrender.com/api/login';
-      
+
+    const url = isSignup
+      ? 'https://babylon-mvp-backend.onrender.com/usuario'
+      : 'https://babylon-mvp-backend.onrender.com/login';
+
     const body = JSON.stringify(formData);
 
     try {
@@ -51,11 +63,20 @@ function LoginSignup() {
 
       if (response.ok) {
         setErrorMessage(''); // Limpa a mensagem de erro no sucesso
-        alert(isSignup ? 'Conta criada com sucesso!' : 'Login realizado com sucesso!');
+        alert(
+          isSignup
+            ? 'Conta criada com sucesso!'
+            : 'Login realizado com sucesso!'
+        );
+
+        setUserData({ ...formData, senha: null });
+        login();
         navigate('/');
       } else {
         const data = text ? JSON.parse(text) : {};
-        setErrorMessage(data.message || 'Ocorreu um erro ao processar a sua solicitação.');
+        setErrorMessage(
+          data.message || 'Ocorreu um erro ao processar a sua solicitação.'
+        );
       }
     } catch (error) {
       console.error('Erro:', error);
@@ -128,7 +149,8 @@ function LoginSignup() {
               </div>
             )}
             <p className="switch-link">
-              Já tem uma conta? <button onClick={handleToggle}>Faça login aqui</button>
+              Já tem uma conta?{' '}
+              <button onClick={handleToggle}>Faça login aqui</button>
             </p>
           </div>
         ) : (
@@ -160,7 +182,8 @@ function LoginSignup() {
               </div>
             )}
             <p className="switch-link">
-              Não tem uma conta? <button onClick={handleToggle}>Crie uma aqui</button>
+              Não tem uma conta?{' '}
+              <button onClick={handleToggle}>Crie uma aqui</button>
             </p>
           </div>
         )}

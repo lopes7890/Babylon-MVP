@@ -1,35 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { FaSearch, FaBook, FaSpinner } from "react-icons/fa";
-import "./RadomBooks.css";
+import React, { useEffect, useRef, useState } from 'react';
+import { FaSearch, FaBook, FaSpinner } from 'react-icons/fa';
+
+import './RadomBooks.css';
+import limitarCaracteres from '../../utils/limitCharacters.js';
+import useFetchCachedBooks from '../../hooks/useCacheFetchBooks';
 
 const RandomBooks = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const searchFilter = useRef(null);
 
   useEffect(() => {
-    const randomPage = Math.floor(Math.random() * 100) + 1;
-    const fetchBooks = async () => {
-      try {
-        const response = await fetch(
-          `https://gutendex.com/books/?page=${randomPage}&page_size=10`
-        );
-        const data = await response.json();
-        if (data.error) {
-          setError(data.error);
-        } else {
-          setBooks(data.results);
-        }
-
-        setLoading(false);
-      } catch (error) {
-        setError("Erro ao encontrar livros");
-        setLoading(false);
-      }
-    };
-
-    fetchBooks();
+    useFetchCachedBooks({ setBooks, setError, setLoading, withCache: true });
   }, []);
 
   const filteredBooks = books.filter((book) => {
@@ -59,15 +44,23 @@ const RandomBooks = () => {
     <div className="books-container">
       <h2 className="books-title">Livros</h2>
 
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Procure por um livro ou autor"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="search-input"
-        />
-        <FaSearch className="search-icon" />
+      <div className="search-center">
+        <div
+          className="search-container"
+          onClick={() => {
+            searchFilter.current.focus();
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Procure por um livro ou autor"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+            ref={searchFilter}
+          />
+          <FaSearch className="search-icon" />
+        </div>
       </div>
 
       <ul className="books-list">
@@ -76,15 +69,16 @@ const RandomBooks = () => {
             <li key={index} className="book-item">
               <h3 className="book-title">
                 <FaBook className="book-icon" />
-                {book.title}
+                {limitarCaracteres(book.title)}
               </h3>
               <p className="book-authors">
-                Authors:{" "}
-                {book.authors?.map((a) => a.name).join(", ") ||
-                  "Unknown Author"}
+                Authors:{' '}
+                {book.authors?.map((a) => a.name).join(', ') ||
+                  'Unknown Author'}
               </p>
+              <div className="align-to-the-end"></div>
               <a
-                href={book.formats["text/html"] || "#"}
+                href={book.formats['text/html'] || '#'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="book-link"
@@ -92,7 +86,7 @@ const RandomBooks = () => {
                 Read
               </a>
               <img
-                src={book.formats["image/jpeg"] || "default-image-link.jpg"}
+                src={book.formats['image/jpeg'] || 'default-image-link.jpg'}
                 alt={`Cover of ${book.title}`}
                 className="book-image"
               />

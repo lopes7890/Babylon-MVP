@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './css/Library.css'; 
+import './css/Library.css';
 function Library() {
   const [library, setLibrary] = useState([]);
   const [bookClub, setBookClub] = useState({ name: '', book: {}, members: [] });
@@ -8,14 +8,14 @@ function Library() {
   // Função para buscar os dados da biblioteca do backend
   useEffect(() => {
     fetch('https://babylon-mvp-backend.onrender.com/library"')
-      .then(response => response.json())
-      .then(data => setLibrary(data.books))
-      .catch(error => console.error('Erro ao buscar biblioteca:', error));
+      .then((response) => response.json())
+      .then((data) => setLibrary(data.books))
+      .catch((error) => console.error('Erro ao buscar biblioteca:', error));
 
     fetch('/api/book-club')
-      .then(response => response.json())
-      .then(data => setBookClub(data))
-      .catch(error => console.error('Erro ao buscar clube do livro:', error));
+      .then((response) => response.json())
+      .then((data) => setBookClub(data))
+      .catch((error) => console.error('Erro ao buscar clube do livro:', error));
   }, []);
 
   // Função para lidar com o clique no livro e enviar os dados ao backend
@@ -30,15 +30,17 @@ function Library() {
       },
       body: JSON.stringify({ bookId: book.id }), // Manda o ID do livro
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         if (data.success) {
           console.log('Livro salvo com sucesso:', data);
         } else {
           console.error('Erro ao salvar livro:', data.message);
         }
       })
-      .catch(error => console.error('Erro ao comunicar com o backend:', error));
+      .catch((error) =>
+        console.error('Erro ao comunicar com o backend:', error)
+      );
   };
 
   return (
@@ -47,9 +49,9 @@ function Library() {
         <h3>Sua biblioteca:</h3>
         <div className="books">
           {library.map((book, index) => (
-            <div 
-              key={index} 
-              className="book-cover" 
+            <div
+              key={index}
+              className="book-cover"
               onClick={() => handleBookClick(book)} // Adiciona evento de clique
             >
               <p>{book.name}</p>
@@ -82,7 +84,8 @@ function Library() {
             <ul>
               {bookClub.members.map((member, index) => (
                 <li key={index}>
-                  <span className={`icon member${index + 1}`}></span> {member.name}
+                  <span className={`icon member${index + 1}`}></span>{' '}
+                  {member.name}
                 </li>
               ))}
             </ul>
