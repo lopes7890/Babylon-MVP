@@ -44,21 +44,23 @@ const RandomBooks = () => {
     <div className="books-container">
       <h2 className="books-title">Livros</h2>
 
-      <div
-        className="search-container"
-        onClick={() => {
-          searchFilter.current.focus();
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Procure por um livro ou autor"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="search-input"
-          ref={searchFilter}
-        />
-        <FaSearch className="search-icon" />
+      <div className="search-center">
+        <div
+          className="search-container"
+          onClick={() => {
+            searchFilter.current.focus();
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Procure por um livro ou autor"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+            ref={searchFilter}
+          />
+          <FaSearch className="search-icon" />
+        </div>
       </div>
 
       <ul className="books-list">
