@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaUser, FaBook, FaVideo, FaPen, FaList, FaBookReader, FaComments, FaCog } from 'react-icons/fa';
+import { MdMenu } from 'react-icons/md';
 import './SiderbarMenu.css'; // Importa o arquivo CSS
-import menu_hamburguer from '../../assets/menu_hamburguer.png'
 
 function SidebarMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,20 +16,59 @@ function SidebarMenu() {
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebar-menu">
           <ul>
-            <li><Link to="/profile">Seu perfil</Link></li>
-            <li><Link to="/iastory">IA Conta histórias</Link></li>
-            <li><Link to="/lives">Lives</Link></li>
-            <li><Link to="/workshop">Oficina de criação</Link></li>
-            <li><Link to="/library">Sua Biblioteca</Link></li>
-            <li><Link to="/bookclub">Clube do livro</Link></li>
-            <li><Link to="/feed">Publicações</Link></li>
-            <li><Link to="/home">Configurações</Link></li>
-           
+            <li>
+              <Link to="/profile">
+                <FaUser className="menu-icon" />
+                Seu perfil
+              </Link>
+            </li>
+            <li>
+              <Link to="/iastory">
+                <FaBookReader className="menu-icon" />
+                IA Conta histórias
+              </Link>
+            </li>
+            <li>
+              <Link to="/lives">
+                <FaVideo className="menu-icon" />
+                Lives
+              </Link>
+            </li>
+            <li>
+              <Link to="/workshop">
+                <FaPen className="menu-icon" />
+                Oficina de criação
+              </Link>
+            </li>
+            <li>
+              <Link to="/library">
+                <FaBook className="menu-icon" />
+                Sua Biblioteca
+              </Link>
+            </li>
+            <li>
+              <Link to="/bookclub">
+                <FaList className="menu-icon" />
+                Clube do livro
+              </Link>
+            </li>
+            <li>
+              <Link to="/feed">
+                <FaComments className="menu-icon" />
+                Publicações
+              </Link>
+            </li>
+            <li>
+              <Link to="/home">
+                <FaCog className="menu-icon" />
+                Configurações
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
       <div className="sidebar-toggle" onClick={toggleSidebar}>
-      <img id='menu-hamburger' src={menu_hamburguer} alt="" />
+        <MdMenu className="menu-toggle-icon" />
       </div>
     </>
   );
