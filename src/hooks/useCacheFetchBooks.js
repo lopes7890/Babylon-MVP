@@ -24,8 +24,8 @@ export default function useFetchCachedBooks({
         const cacheValid = timestamp + temp > timeNow; // validacao do cache
 
         setBooks(books);
-        if (cacheValid) makeRequest = false;
-        updateStoredBooks = false;
+        //if (cacheValid) makeRequest = false; // Não fazer a requisicao se os dados armazenados estiverem valido.
+        updateStoredBooks = true;
         setLoading(false);
       }
     }
@@ -58,7 +58,7 @@ export default function useFetchCachedBooks({
           })
         );
 
-        if (updateStoredBooks) setBooks(data.results);
+        if (updateStoredBooks) setBooks((atual) => [...atual, ...data.results]);
       }
 
       setLoading(false);
