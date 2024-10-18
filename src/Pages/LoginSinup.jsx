@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaExclamationCircle } from 'react-icons/fa';
 import './css/LoginSinup.css';
+import { useLogged } from '../contexts/loggedContext';
 
 function LoginSignup() {
+  const { login, logout, isLoggedIn } = useLogged();
+
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -56,6 +59,8 @@ function LoginSignup() {
             ? 'Conta criada com sucesso!'
             : 'Login realizado com sucesso!'
         );
+
+        login();
         navigate('/');
       } else {
         const data = text ? JSON.parse(text) : {};
