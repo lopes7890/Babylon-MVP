@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FaSearch, FaBook, FaSpinner } from 'react-icons/fa';
 
 import './RadomBooks.css';
-import limitarCaracteres from '../../shared/limitarCaracteres';
+import limitarCaracteres from '../../utils/limitCharacters.js';
 import useFetchCachedBooks from '../../hooks/useCacheFetchBooks';
 
 const RandomBooks = () => {

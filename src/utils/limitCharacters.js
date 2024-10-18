@@ -2,7 +2,7 @@
 //   'The Twilight of the Idols; or, How to Philosophize with the Hammer. The Antichrist: Complete Works, Volume Sixteen';
 
 // Função principal
-function limitarCaracteres(frase = 'Não definido', maximo = 64) {
+function limitCharacters(frase = 'Não definido', maximo = 64) {
   const total = frase.length;
 
   // Não modificar a frase se ela for menor que o tamanho maximo
@@ -16,7 +16,6 @@ function limitarCaracteres(frase = 'Não definido', maximo = 64) {
 
   // Verificar se o corte foi feito onde é possivel adicionar tres pontos (...). Essa funcao é importante, sem ela, algumas frases serao retornadas com tres pontos após uma virgula.
   const cortePreciso = verificarUltimoCaractere(novaFrase);
-  console.log(cortePreciso);
   return cortePreciso;
 }
 
@@ -50,4 +49,4 @@ function verificarUltimoCaractere(frase) {
   return novaFrase;
 }
 
-export default limitarCaracteres;
+export default limitCharacters;

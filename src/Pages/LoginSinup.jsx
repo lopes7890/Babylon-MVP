@@ -1,15 +1,24 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { FaExclamationCircle } from 'react-icons/fa';
 import './css/LoginSinup.css';
 import { useLogged } from '../contexts/loggedContext';
+import useGetQueryParameters from '../utils/useGetQueryParameters';
 
 function LoginSignup() {
-  const { login, logout, isLoggedIn } = useLogged();
-
+  const { login, setUserData } = useLogged();
   const [isSignup, setIsSignup] = useState(false);
+
+  // const [searchParams] = useSearchParams();
+  // const loginOrSingup = searchParams.get('auth');
+
+  const [auth] = useGetQueryParameters('auth');
+  useEffect(() => {
+    if (auth === 'signup') setIsSignup(true);
+  }, []);
+
   const [formData, setFormData] = useState({
-    name: '',
+    nome: '',
     gmail: '',
     telefone: '',
     senha: '',
@@ -60,6 +69,7 @@ function LoginSignup() {
             : 'Login realizado com sucesso!'
         );
 
+        setUserData({ ...formData, senha: null });
         login();
         navigate('/');
       } else {
