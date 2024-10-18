@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { FaExclamationCircle } from 'react-icons/fa';
-import './css/LoginSinup.css';
+import { useNavigate } from 'react-router-dom';
+import { FaExclamationCircle, FaUser, FaEnvelope, FaPhone, FaLock, FaCalendarAlt, FaVenusMars, FaEye, FaEyeSlash } from 'react-icons/fa'; // Ícones adicionados
+import './css/LoginSinup.css'
 import { useLogged } from '../contexts/loggedContext';
 import useGetQueryParameters from '../utils/useGetQueryParameters';
 
 function LoginSignup() {
   const { login, setUserData } = useLogged();
   const [isSignup, setIsSignup] = useState(false);
-
-  // const [searchParams] = useSearchParams();
-  // const loginOrSingup = searchParams.get('auth');
-
   const [auth] = useGetQueryParameters('auth');
+
   useEffect(() => {
     if (auth === 'signup') setIsSignup(true);
-  }, []);
+  }, [auth]);
 
   const [formData, setFormData] = useState({
     nome: '',
@@ -25,13 +22,19 @@ function LoginSignup() {
     idade: '',
     genero: '',
   });
-  const [errorMessage, setErrorMessage] = useState(''); // Novo estado para armazenar a mensagem de erro
 
+  
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleToggle = () => {
     setIsSignup(!isSignup);
-    setErrorMessage(''); // Limpa a mensagem de erro ao alternar
+    setErrorMessage('');
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleChange = (e) => {
@@ -62,11 +65,9 @@ function LoginSignup() {
       const text = await response.text();
 
       if (response.ok) {
-        setErrorMessage(''); // Limpa a mensagem de erro no sucesso
+        setErrorMessage('');
         alert(
-          isSignup
-            ? 'Conta criada com sucesso!'
-            : 'Login realizado com sucesso!'
+          isSignup ? 'Conta criada com sucesso!' : 'Login realizado com sucesso!'
         );
 
         setUserData({ ...formData, senha: null });
@@ -91,55 +92,78 @@ function LoginSignup() {
           <div className="form-section">
             <h2>Crie sua Conta</h2>
             <form onSubmit={handleSubmit}>
-              {/* Inputs de cadastro */}
-              <input
-                type="text"
-                name="nome"
-                placeholder="Nome"
-                value={formData.nome}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="email"
-                name="gmail"
-                placeholder="Gmail"
-                value={formData.gmail}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="text"
-                name="telefone"
-                placeholder="Telefone"
-                value={formData.telefone}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="password"
-                name="senha"
-                placeholder="Senha"
-                value={formData.senha}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="number"
-                name="idade"
-                placeholder="Idade"
-                value={formData.idade}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="text"
-                name="genero"
-                placeholder="Gênero"
-                value={formData.genero}
-                onChange={handleChange}
-                required
-              />
+              {/* Inputs de cadastro com ícones */}
+              <div className="input-group">
+                <FaUser className="input-icon" />
+                <input
+                  type="text"
+                  name="nome"
+                  placeholder="Nome"
+                  value={formData.nome}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <FaEnvelope className="input-icon" />
+                <input
+                  type="email"
+                  name="gmail"
+                  placeholder="Gmail"
+                  value={formData.gmail}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <FaPhone className="input-icon" />
+                <input
+                  type="text"
+                  name="telefone"
+                  placeholder="Telefone"
+                  value={formData.telefone}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <FaLock className="input-icon" />
+                <input
+                  type={showPassword ? 'text' : 'password'}  // Alterna entre texto e senha
+                  name="senha"
+                  placeholder="Senha"
+                  value={formData.senha}
+                  onChange={handleChange}
+                  required
+                />
+                {showPassword ? (
+                  <FaEyeSlash className="toggle-password-icon" onClick={togglePasswordVisibility} />
+                ) : (
+                  <FaEye className="toggle-password-icon" onClick={togglePasswordVisibility} />
+                )}
+              </div>
+              <div className="input-group">
+                <FaCalendarAlt className="input-icon" />
+                <input
+                  type="number"
+                  name="idade"
+                  placeholder="Idade"
+                  value={formData.idade}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <FaVenusMars className="input-icon" />
+                <input
+                  type="text"
+                  name="genero"
+                  placeholder="Gênero"
+                  value={formData.genero}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
               <button type="submit">Criar Conta</button>
             </form>
             {errorMessage && (
@@ -157,22 +181,33 @@ function LoginSignup() {
           <div className="form-section">
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
-              <input
-                type="email"
-                name="gmail"
-                placeholder="Gmail"
-                value={formData.gmail}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="password"
-                name="senha"
-                placeholder="Senha"
-                value={formData.senha}
-                onChange={handleChange}
-                required
-              />
+              <div className="input-group">
+                <FaEnvelope className="input-icon" />
+                <input
+                  type="email"
+                  name="gmail"
+                  placeholder="Gmail"
+                  value={formData.gmail}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <FaLock className="input-icon" />
+                <input
+                  type={showPassword ? 'text' : 'password'}  // Alterna entre texto e senha
+                  name="senha"
+                  placeholder="Senha"
+                  value={formData.senha}
+                  onChange={handleChange}
+                  required
+                />
+                {showPassword ? (
+                  <FaEyeSlash className="toggle-password-icon" onClick={togglePasswordVisibility} />
+                ) : (
+                  <FaEye className="toggle-password-icon" onClick={togglePasswordVisibility} />
+                )}
+              </div>
               <button type="submit">Entrar</button>
             </form>
             {errorMessage && (
