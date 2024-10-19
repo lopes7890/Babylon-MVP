@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaUser, FaBook, FaVideo, FaPen, FaList, FaBookReader, FaComments, FaCog } from 'react-icons/fa';
+import {
+  FaUser,
+  FaBook,
+  FaVideo,
+  FaPen,
+  FaList,
+  FaBookReader,
+  FaComments,
+  FaCog,
+  FaSignOutAlt,
+} from 'react-icons/fa';
 import { MdMenu } from 'react-icons/md';
 import './SiderbarMenu.css'; // Importa o arquivo CSS
+import { useLogged } from '../../contexts/loggedContext';
 
 function SidebarMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const { isLoggedIn, logout } = useLogged();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -64,6 +76,20 @@ function SidebarMenu() {
                 Configurações
               </Link>
             </li>
+            {isLoggedIn && (
+              <li>
+                <Link
+                  to="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    logout();
+                  }}
+                >
+                  <FaSignOutAlt className="menu-icon" />
+                  Fazer logout
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaExclamationCircle, FaUser, FaEnvelope, FaPhone, FaLock, FaCalendarAlt, FaVenusMars, FaEye, FaEyeSlash } from 'react-icons/fa'; // Ícones adicionados
-import './css/LoginSinup.css'
+import {
+  FaExclamationCircle,
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaLock,
+  FaCalendarAlt,
+  FaVenusMars,
+  FaEye,
+  FaEyeSlash,
+} from 'react-icons/fa'; // Ícones adicionados
+import './css/LoginSinup.css';
 import { useLogged } from '../contexts/loggedContext';
 import useGetQueryParameters from '../utils/useGetQueryParameters';
 
@@ -23,7 +33,6 @@ function LoginSignup() {
     genero: '',
   });
 
-  
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
@@ -63,14 +72,29 @@ function LoginSignup() {
       });
 
       const text = await response.text();
+      const responseParsed = JSON.parse(text);
 
       if (response.ok) {
         setErrorMessage('');
         alert(
-          isSignup ? 'Conta criada com sucesso!' : 'Login realizado com sucesso!'
+          isSignup
+            ? 'Conta criada com sucesso!'
+            : 'Login realizado com sucesso!'
         );
 
-        setUserData({ ...formData, senha: null });
+        if (isSignup) {
+          setUserData({
+            ...formData,
+            senha: null,
+          });
+        } else {
+          setUserData({
+            ...formData,
+            senha: null,
+            nome: responseParsed.usuario,
+          });
+        }
+
         login();
         navigate('/');
       } else {
@@ -129,7 +153,7 @@ function LoginSignup() {
               <div className="input-group">
                 <FaLock className="input-icon" />
                 <input
-                  type={showPassword ? 'text' : 'password'}  // Alterna entre texto e senha
+                  type={showPassword ? 'text' : 'password'} // Alterna entre texto e senha
                   name="senha"
                   placeholder="Senha"
                   value={formData.senha}
@@ -137,9 +161,15 @@ function LoginSignup() {
                   required
                 />
                 {showPassword ? (
-                  <FaEyeSlash className="toggle-password-icon" onClick={togglePasswordVisibility} />
+                  <FaEyeSlash
+                    className="toggle-password-icon"
+                    onClick={togglePasswordVisibility}
+                  />
                 ) : (
-                  <FaEye className="toggle-password-icon" onClick={togglePasswordVisibility} />
+                  <FaEye
+                    className="toggle-password-icon"
+                    onClick={togglePasswordVisibility}
+                  />
                 )}
               </div>
               <div className="input-group">
@@ -195,7 +225,7 @@ function LoginSignup() {
               <div className="input-group">
                 <FaLock className="input-icon" />
                 <input
-                  type={showPassword ? 'text' : 'password'}  // Alterna entre texto e senha
+                  type={showPassword ? 'text' : 'password'} // Alterna entre texto e senha
                   name="senha"
                   placeholder="Senha"
                   value={formData.senha}
@@ -203,9 +233,15 @@ function LoginSignup() {
                   required
                 />
                 {showPassword ? (
-                  <FaEyeSlash className="toggle-password-icon" onClick={togglePasswordVisibility} />
+                  <FaEyeSlash
+                    className="toggle-password-icon"
+                    onClick={togglePasswordVisibility}
+                  />
                 ) : (
-                  <FaEye className="toggle-password-icon" onClick={togglePasswordVisibility} />
+                  <FaEye
+                    className="toggle-password-icon"
+                    onClick={togglePasswordVisibility}
+                  />
                 )}
               </div>
               <button type="submit">Entrar</button>
