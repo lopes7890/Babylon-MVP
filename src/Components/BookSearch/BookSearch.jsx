@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './BookSearch.css'
+
 function BookSearch() {
   const [query, setQuery] = useState('');
   const [books, setBooks] = useState([]);
@@ -9,10 +10,11 @@ function BookSearch() {
     e.preventDefault();
     if (query) {
       try {
-        const response = await axios.get(
-          `https://www.googleapis.com/books/v1/volumes?q=${query}`
+        const response = await axios.post(
+          'https://babylon-mvp-backend.onrender.com/busca',  
+          { titulo: query }  
         );
-        setBooks(response.data.items);
+        setBooks(response.data); 
       } catch (error) {
         console.error('Erro ao buscar livros:', error);
       }
@@ -31,12 +33,14 @@ function BookSearch() {
         <button className='btn' type="submit">Buscar</button>
       </form>
       <div className="book-results">
-        {books.map((book) => (
-          <div key={book.id} className="book-item">
-            <h3>{book.volumeInfo.title}</h3>
-            <p>{book.volumeInfo.authors?.join(', ')}</p>
-            <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
-            
+        {books.map((book, index) => (
+          <div key={index} className="book-item">
+            <h3>{book.titulo}</h3>
+            <p>{book.autor}</p>
+            <a href={book.livro} target="_blank" rel="noreferrer">
+              Ler o livro
+            </a>
+            <img src={book.capa} alt={book.titulo} />
           </div>
         ))}
       </div>

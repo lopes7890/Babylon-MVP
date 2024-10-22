@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { FaExclamationCircle, FaUser, FaEnvelope, FaPhone, FaLock, FaCalendarAlt, FaVenusMars, FaEye, FaEyeSlash } from 'react-icons/fa'; // Ícones adicionados
-import './css/LoginSinup.css'
+import { FaExclamationCircle, FaUser, FaEnvelope, FaPhone, FaLock, FaCalendarAlt, FaVenusMars, FaEye, FaEyeSlash } from 'react-icons/fa';
+import './css/LoginSinup.css';
 import { useLogged } from '../contexts/loggedContext';
 import useGetQueryParameters from '../utils/useGetQueryParameters';
 
@@ -9,6 +11,35 @@ function LoginSignup() {
   const { login, setUserData } = useLogged();
   const [isSignup, setIsSignup] = useState(false);
   const [auth] = useGetQueryParameters('auth');
+  
+  const handlePhoneChange = (e) => {
+    const value = e.target.value;
+    const formattedValue = value.replace(/[^\d]/g, ''); // Aceita apenas números
+    setFormData({
+      ...formData,
+      telefone: formattedValue,
+    });
+  };
+
+  // Função para remover caracteres especiais e permitir apenas letras e espaços
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    const formattedValue = value.replace(/[^a-zA-Z\s]/g, ''); // Aceita apenas letras e espaços
+    setFormData({
+      ...formData,
+      nome: formattedValue,
+    });
+  };
+
+  // Função para validar o campo de gênero (apenas letras)
+  const handleGenderChange = (e) => {
+    const value = e.target.value;
+    const formattedValue = value.replace(/[^a-zA-Z]/g, ''); // Aceita apenas letras
+    setFormData({
+      ...formData,
+      genero: formattedValue,
+    });
+  };
 
   useEffect(() => {
     if (auth === 'signup') setIsSignup(true);
@@ -23,7 +54,6 @@ function LoginSignup() {
     genero: '',
   });
 
-  
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
@@ -46,13 +76,10 @@ function LoginSignup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const url = isSignup
       ? 'https://babylon-mvp-backend.onrender.com/usuario'
       : 'https://babylon-mvp-backend.onrender.com/login';
-
     const body = JSON.stringify(formData);
-
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -61,38 +88,31 @@ function LoginSignup() {
         },
         body,
       });
-
       const text = await response.text();
-
       if (response.ok) {
         setErrorMessage('');
-        alert(
-          isSignup ? 'Conta criada com sucesso!' : 'Login realizado com sucesso!'
-        );
-
+        toast.success(isSignup ? 'Conta criada com sucesso!' : 'Login realizado com sucesso!');
         setUserData({ ...formData, senha: null });
         login();
         navigate('/');
       } else {
-        const data = text ? JSON.parse(text) : {};
-        setErrorMessage(
-          data.message || 'Ocorreu um erro ao processar a sua solicitação.'
-        );
+        // setErrorMessage('Ocorreu um erro ao processar a sua solicitação.');
+        toast.error('Ocorreu um erro ao processar a sua solicitação.');
       }
     } catch (error) {
       console.error('Erro:', error);
-      setErrorMessage('Erro ao enviar os dados. Tente novamente mais tarde.');
+      toast.error('Erro ao enviar os dados. Tente novamente mais tarde.');
     }
-  };
+  }
 
   return (
     <div className="login-signup-container">
+      <ToastContainer />
       <div className="form-wrapper">
         {isSignup ? (
           <div className="form-section">
             <h2>Crie sua Conta</h2>
             <form onSubmit={handleSubmit}>
-              {/* Inputs de cadastro com ícones */}
               <div className="input-group">
                 <FaUser className="input-icon" />
                 <input
@@ -100,7 +120,7 @@ function LoginSignup() {
                   name="nome"
                   placeholder="Nome"
                   value={formData.nome}
-                  onChange={handleChange}
+                  onChange={handleNameChange}  
                   required
                 />
               </div>
@@ -122,14 +142,14 @@ function LoginSignup() {
                   name="telefone"
                   placeholder="Telefone"
                   value={formData.telefone}
-                  onChange={handleChange}
+                  onChange={handlePhoneChange}  
                   required
                 />
               </div>
               <div className="input-group">
                 <FaLock className="input-icon" />
                 <input
-                  type={showPassword ? 'text' : 'password'}  // Alterna entre texto e senha
+                  type={showPassword ? 'text' : 'password'}
                   name="senha"
                   placeholder="Senha"
                   value={formData.senha}
@@ -160,7 +180,7 @@ function LoginSignup() {
                   name="genero"
                   placeholder="Gênero"
                   value={formData.genero}
-                  onChange={handleChange}
+                  onChange={handleGenderChange}  
                   required
                 />
               </div>
@@ -195,7 +215,7 @@ function LoginSignup() {
               <div className="input-group">
                 <FaLock className="input-icon" />
                 <input
-                  type={showPassword ? 'text' : 'password'}  // Alterna entre texto e senha
+                  type={showPassword ? 'text' : 'password'}
                   name="senha"
                   placeholder="Senha"
                   value={formData.senha}
