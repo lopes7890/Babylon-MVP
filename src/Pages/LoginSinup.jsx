@@ -24,7 +24,7 @@ function LoginSignup() {
   // Função para remover caracteres especiais e permitir apenas letras e espaços
   const handleNameChange = (e) => {
     const value = e.target.value;
-    const formattedValue = value.replace(/[^a-zA-Z\s]/g, ''); // Aceita apenas letras e espaços
+    const formattedValue = value.replace(/[^a-zA-Z\s]/g, ''); 
     setFormData({
       ...formData,
       nome: formattedValue,

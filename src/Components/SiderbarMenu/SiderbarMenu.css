@@ -2,22 +2,20 @@
 .sidebar {
   position: fixed;
   top: 0;
-  left: -250px; 
-  height: 100vh; 
-  width: 250px; 
-  background-color: #f4f4f4; 
-  transition: left 0.3s ease; 
-  overflow-y: auto; 
-  border-right: 1px solid #ddd; 
-  z-index: 1000; 
+  left: -250px;
+  height: 100vh;
+  width: 250px;
+  background-color: #f4f4f4;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+  z-index: 1000;
   padding: 0;
 }
 
-
 .sidebar.open {
-  left: 0; 
+  left: 0;
 }
-
 
 .sidebar-toggle {
   position: fixed;
@@ -25,14 +23,12 @@
   left: 20px;
   font-size: 24px;
   cursor: pointer;
-  z-index: 1001; 
+  z-index: 1001;
 }
-
 
 #menu-hamburger {
   width: 24px;
 }
-
 
 .sidebar-menu {
   padding: 20px;
@@ -49,9 +45,8 @@
   margin: 15px 0;
 }
 
-
 .sidebar-menu a {
-  display: flex; 
+  display: flex;
   align-items: center;
   text-decoration: none;
   color: #333;
@@ -64,16 +59,13 @@
   color: #bd9ee0;
 }
 
-
 .menu-icon {
   margin-right: 10px;
   font-size: 20px;
-  color: #666; 
-  
+  color: #666;
 }
 
 .menu-toggle-icon {
   font-size: 28px;
   cursor: pointer;
-  
 }

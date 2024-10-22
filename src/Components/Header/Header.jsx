@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import useLogged from '../../contexts/loggedContext';
-
 function Header() {
-  const { isLoggedIn, userData } = useLogged();
+  const { isLoggedIn } = useLogged();
 
   return (
     <header className="App-header">
@@ -21,23 +26,17 @@ function Header() {
           </li>
         </ul>
 
-        <div className="auth-button">
-          {isLoggedIn ? (
-            <div className="hello-user">
-              Olá, {userData.nome ? userData.nome : 'Desconhecido'}
-            </div>
-          ) : (
-            <>
-              <Link to="/login?auth=signup" className="btn">
-                <button>Cadastre-se</button>
-              </Link>
+        {!isLoggedIn && (
+          <div className="auth-button">
+            <Link to="/login?auth=signup" className="btn">
+              <button>Cadastre-se</button>
+            </Link>
 
-              <Link to="/login" className="btn">
-                <button>Entrar</button>
-              </Link>
-            </>
-          )}
-        </div>
+            <Link to="/login" className="btn">
+              <button>Entrar</button>
+            </Link>
+          </div>
+        )}
       </nav>
     </header>
   );

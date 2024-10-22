@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { FaUpload, FaEdit } from "react-icons/fa"; 
-import { ToastContainer, toast } from "react-toastify"; 
-import "react-toastify/dist/ReactToastify.css";
-import "./css/Profile.css";
-import Modal from "../Components/Modal/Modal";
-import perfil from "../assets/perfil_padrao.png";
+import React, { useEffect, useState } from 'react';
+import { FaUpload, FaEdit } from 'react-icons/fa';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './css/Profile.css';
+import Modal from '../Components/Modal/Modal';
+import perfil from '../assets/perfil_padrao.png';
 
 function Profile() {
   const [userData, setUserData] = useState({});
@@ -14,7 +14,7 @@ function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetch("https://babylon-mvp-backend.onrender.com/api/user-profile")
+    fetch('https://babylon-mvp-backend.onrender.com/api/user-profile')
       .then((response) => response.json())
       .then((data) => {
         setUserData(data.user);
@@ -22,7 +22,7 @@ function Profile() {
         setPublishedBooks(data.publishedBooks);
       })
       .catch((error) =>
-        console.error("Erro ao buscar dados do perfil:", error)
+        console.error('Erro ao buscar dados do perfil:', error)
       );
   }, []);
 
@@ -45,27 +45,27 @@ function Profile() {
   const saveAvatar = () => {
     if (newAvatar) {
       const formData = new FormData();
-      formData.append("avatar", newAvatar);
+      formData.append('avatar', newAvatar);
 
-      fetch("/api/user-profile/avatar", {
-        method: "POST",
+      fetch('/api/user-profile/avatar', {
+        method: 'POST',
         body: formData,
       })
         .then((response) => response.json())
         .then(() => {
-          toast.success("Avatar atualizado com sucesso!"); 
-          setIsModalOpen(false); 
+          toast.success('Avatar atualizado com sucesso!');
+          setIsModalOpen(false);
         })
         .catch((error) => {
-          toast.error("Erro ao atualizar o avatar."); 
-          console.error("Erro ao atualizar o avatar:", error);
+          toast.error('Erro ao atualizar o avatar.');
+          console.error('Erro ao atualizar o avatar:', error);
         });
     }
   };
 
   const handleWithdraw = () => {
     // Simulação de saque
-    toast.success("Saque realizado com sucesso!"); // Notificação de sucesso ao sacar
+    toast.success('Saque realizado com sucesso!'); // Notificação de sucesso ao sacar
   };
 
   return (
@@ -129,7 +129,11 @@ function Profile() {
       />
 
       {/* Container do Toastify */}
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+      />
     </div>
   );
 }
