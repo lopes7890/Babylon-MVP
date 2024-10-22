@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaSearch, FaBook, FaSpinner } from 'react-icons/fa';
-
 import './RadomBooks.css';
 import limitarCaracteres from '../../utils/limitCharacters.js';
 import useFetchCachedBooks from '../../hooks/useCacheFetchBooks';
@@ -14,18 +13,21 @@ const RandomBooks = () => {
   const searchFilter = useRef(null);
 
   useEffect(() => {
+    // Função para buscar os livros em cache
     useFetchCachedBooks({ setBooks, setError, setLoading, withCache: true });
   }, []);
 
+  // Filtrando os livros de acordo com a query de busca
   const filteredBooks = books.filter((book) => {
-    const titleMatch = book.title
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+    const titleMatch = book.title.toLowerCase().includes(searchQuery.toLowerCase());
     const authorMatch = book.authors?.some((author) =>
       author.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     return titleMatch || authorMatch;
   });
+
+  // Para fins de depuração, exibe os livros carregados
+  console.log('Books loaded:', books);
 
   if (loading) {
     return (
@@ -72,9 +74,7 @@ const RandomBooks = () => {
                 {limitarCaracteres(book.title)}
               </h3>
               <p className="book-authors">
-                Authors:{' '}
-                {book.authors?.map((a) => a.name).join(', ') ||
-                  'Unknown Author'}
+                Authors: {book.authors?.map((a) => a.name).join(', ') || 'Unknown Author'}
               </p>
               <div className="align-to-the-end"></div>
               <a

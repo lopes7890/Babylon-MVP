@@ -80,6 +80,7 @@ function LoginSignup() {
       ? 'https://babylon-mvp-backend.onrender.com/usuario'
       : 'https://babylon-mvp-backend.onrender.com/login';
     const body = JSON.stringify(formData);
+    
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -88,22 +89,27 @@ function LoginSignup() {
         },
         body,
       });
-      const text = await response.text();
+      
+      const data = await response.json();
+      
       if (response.ok) {
         setErrorMessage('');
         toast.success(isSignup ? 'Conta criada com sucesso!' : 'Login realizado com sucesso!');
         setUserData({ ...formData, senha: null });
         login();
         navigate('/');
+      } else if (response.status === 409) {
+        // Erro 409 para conflito de dados (e-mail ou telefone já cadastrados)
+        toast.error(data.message);  // Esperando que o backend retorne uma mensagem apropriada
       } else {
-        // setErrorMessage('Ocorreu um erro ao processar a sua solicitação.');
         toast.error('Ocorreu um erro ao processar a sua solicitação.');
       }
     } catch (error) {
       console.error('Erro:', error);
       toast.error('Erro ao enviar os dados. Tente novamente mais tarde.');
     }
-  }
+  };
+  
 
   return (
     <div className="login-signup-container">
