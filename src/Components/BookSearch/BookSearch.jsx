@@ -9,16 +9,16 @@ function BookSearch() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    setErrorMessage(''); 
+    setErrorMessage('');
     if (query) {
       try {
-        const response = await axios.post(
-          'https://babylon-mvp-backend.onrender.com/busca',  
-          { titulo: query }
+        const response = await axios.get(
+          `https://babylon-mvp-backend.onrender.com/busca?titulo=${query}`
         );
-        
-        console.log('Response data:', response.data);  // Log da resposta
-        
+
+        console.log('Response data:', response);
+        console.log('Response data:', response.data); // Log da resposta
+
         // Verifica se a resposta é um array e não está vazia
         if (Array.isArray(response.data) && response.data.length > 0) {
           setBooks(response.data);
@@ -43,9 +43,12 @@ function BookSearch() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button className='btn' type="submit">Buscar</button>
+        <button className="btn" type="submit">
+          Buscar
+        </button>
       </form>
-      {errorMessage && <p className="error">{errorMessage}</p>} {/* Exibe a mensagem de erro */}
+      {errorMessage && <p className="error">{errorMessage}</p>}{' '}
+      {/* Exibe a mensagem de erro */}
       <div className="book-results">
         {books.map((book, index) => (
           <div key={index} className="book-item">
