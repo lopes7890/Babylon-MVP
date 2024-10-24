@@ -120,6 +120,7 @@ const RandomBooks = () => {
           ))
         ) : (
           <li className="no-results">Nenhum livro encontrado.</li>
+          
         )}
       </ul>
     </div>
