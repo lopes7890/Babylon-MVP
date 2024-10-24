@@ -2,7 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { FaExclamationCircle, FaUser, FaEnvelope, FaPhone, FaLock, FaCalendarAlt, FaVenusMars, FaEye, FaEyeSlash } from 'react-icons/fa';
+import {
+  FaExclamationCircle,
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaLock,
+  FaCalendarAlt,
+  FaVenusMars,
+  FaEye,
+  FaEyeSlash,
+} from 'react-icons/fa';
 import './css/LoginSinup.css';
 import { useLogged } from '../contexts/loggedContext';
 import useGetQueryParameters from '../utils/useGetQueryParameters';
@@ -11,7 +21,7 @@ function LoginSignup() {
   const { login, setUserData } = useLogged();
   const [isSignup, setIsSignup] = useState(false);
   const [auth] = useGetQueryParameters('auth');
-  
+
   const handlePhoneChange = (e) => {
     const value = e.target.value;
     const formattedValue = value.replace(/[^\d]/g, ''); // Aceita apenas números
@@ -24,7 +34,7 @@ function LoginSignup() {
   // Função para remover caracteres especiais e permitir apenas letras e espaços
   const handleNameChange = (e) => {
     const value = e.target.value;
-    const formattedValue = value.replace(/[^a-zA-Z\s]/g, ''); 
+    const formattedValue = value.replace(/[^a-zA-Z\s]/g, '');
     setFormData({
       ...formData,
       nome: formattedValue,
@@ -41,6 +51,7 @@ function LoginSignup() {
     });
   };
 
+  // Trocar para a pagina de cadastro caso se o usuario tiver clicado no botao de cadastro
   useEffect(() => {
     if (auth === 'signup') setIsSignup(true);
   }, [auth]);
@@ -80,7 +91,7 @@ function LoginSignup() {
       ? 'https://babylon-mvp-backend.onrender.com/usuario'
       : 'https://babylon-mvp-backend.onrender.com/login';
     const body = JSON.stringify(formData);
-    
+
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -89,18 +100,22 @@ function LoginSignup() {
         },
         body,
       });
-      
+
       const data = await response.json();
-      
+
       if (response.ok) {
         setErrorMessage('');
-        toast.success(isSignup ? 'Conta criada com sucesso!' : 'Login realizado com sucesso!');
-        setUserData({ ...formData, senha: null });
+        toast.success(
+          isSignup
+            ? 'Conta criada com sucesso!'
+            : 'Login realizado com sucesso!'
+        );
+        setUserData({ ...formData, nome: data.usuario, senha: null });
         login();
         navigate('/');
       } else if (response.status === 409) {
         // Erro 409 para conflito de dados (e-mail ou telefone já cadastrados)
-        toast.error(data.message);  // Esperando que o backend retorne uma mensagem apropriada
+        toast.error(data.message); // Esperando que o backend retorne uma mensagem apropriada
       } else {
         toast.error('Ocorreu um erro ao processar a sua solicitação.');
       }
@@ -109,7 +124,6 @@ function LoginSignup() {
       toast.error('Erro ao enviar os dados. Tente novamente mais tarde.');
     }
   };
-  
 
   return (
     <div className="login-signup-container">
@@ -126,7 +140,7 @@ function LoginSignup() {
                   name="nome"
                   placeholder="Nome"
                   value={formData.nome}
-                  onChange={handleNameChange}  
+                  onChange={handleNameChange}
                   required
                 />
               </div>
@@ -148,7 +162,7 @@ function LoginSignup() {
                   name="telefone"
                   placeholder="Telefone"
                   value={formData.telefone}
-                  onChange={handlePhoneChange}  
+                  onChange={handlePhoneChange}
                   required
                 />
               </div>
@@ -163,9 +177,15 @@ function LoginSignup() {
                   required
                 />
                 {showPassword ? (
-                  <FaEyeSlash className="toggle-password-icon" onClick={togglePasswordVisibility} />
+                  <FaEyeSlash
+                    className="toggle-password-icon"
+                    onClick={togglePasswordVisibility}
+                  />
                 ) : (
-                  <FaEye className="toggle-password-icon" onClick={togglePasswordVisibility} />
+                  <FaEye
+                    className="toggle-password-icon"
+                    onClick={togglePasswordVisibility}
+                  />
                 )}
               </div>
               <div className="input-group">
@@ -186,7 +206,7 @@ function LoginSignup() {
                   name="genero"
                   placeholder="Gênero"
                   value={formData.genero}
-                  onChange={handleGenderChange}  
+                  onChange={handleGenderChange}
                   required
                 />
               </div>
@@ -229,9 +249,15 @@ function LoginSignup() {
                   required
                 />
                 {showPassword ? (
-                  <FaEyeSlash className="toggle-password-icon" onClick={togglePasswordVisibility} />
+                  <FaEyeSlash
+                    className="toggle-password-icon"
+                    onClick={togglePasswordVisibility}
+                  />
                 ) : (
-                  <FaEye className="toggle-password-icon" onClick={togglePasswordVisibility} />
+                  <FaEye
+                    className="toggle-password-icon"
+                    onClick={togglePasswordVisibility}
+                  />
                 )}
               </div>
               <button type="submit">Entrar</button>

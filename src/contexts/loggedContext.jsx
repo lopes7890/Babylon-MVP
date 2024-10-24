@@ -37,7 +37,6 @@ const LoggedProvider = ({ children }) => {
   // Efeito para armazenar os dados do cliente em localStorage sempre que o mesmo fizer login ou quando os dados do usuario for alterado
   useEffect(() => {
     if (isLoggedIn && userData.gmail) {
-      console.log(userData);
       window.localStorage.setItem('userData', JSON.stringify(userData));
     }
   }, [isLoggedIn, userData]);
