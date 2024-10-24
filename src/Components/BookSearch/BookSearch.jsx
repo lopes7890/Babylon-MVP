@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './BookSearch.css';  // Certifique-se de que o CSS foi atualizado para o spinner
+import './BookSearch.css';  
 
 function BookSearch() {
   const [query, setQuery] = useState('');
   const [books, setBooks] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-  const [loading, setLoading] = useState(false);  // Estado para controlar o carregamento
+  const [loading, setLoading] = useState(false);  
 
   const handleSearch = async (e) => {
     e.preventDefault();
