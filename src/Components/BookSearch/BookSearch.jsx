@@ -37,9 +37,9 @@ function BookSearch() {
   };
 
   const handleReload = () => {
-    setQuery('');  // Limpa a pesquisa
-    setBooks([]);  // Limpa os livros
-    setError(null); // Limpa os erros
+    setQuery('');  
+    setBooks([]);  
+    setError(null); 
   };
 
   return (
@@ -59,9 +59,11 @@ function BookSearch() {
             title="Recarregar" 
           />
         </div>
-        <button className="btn" type="submit" disabled={loading}>
-          {loading ? <div className="spinner"></div> : 'Buscar'}
-        </button>
+        {query && ( 
+          <button className="btn" type="submit" disabled={loading}>
+            {loading ? <div className="spinner"></div> : 'Buscar'}
+          </button>
+        )}
       </form>
       
       {error && <p className="error-message">{error}</p>}
