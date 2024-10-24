@@ -1,33 +1,35 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './BookSearch.css';
+import './BookSearch.css';  // Certifique-se de que o CSS foi atualizado para o spinner
 
 function BookSearch() {
   const [query, setQuery] = useState('');
   const [books, setBooks] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);  // Estado para controlar o carregamento
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    setErrorMessage(''); 
+    setErrorMessage(''); // Limpar mensagens de erro ao iniciar nova busca
+
     if (query) {
+      setLoading(true);  // Ativar estado de carregamento
       try {
         const response = await axios.post(
-          'https://babylon-mvp-backend.onrender.com/busca',  
+          'https://babylon-mvp-backend.onrender.com/busca',  // Atualize a URL se necessário
           { titulo: query }
         );
         
-        console.log('Response data:', response.data);  // Log da resposta
-        
-        // Verifica se a resposta é um array e não está vazia
         if (Array.isArray(response.data) && response.data.length > 0) {
-          setBooks(response.data);
+          setBooks(response.data);  // Atualizar a lista de livros
         } else {
           setErrorMessage(`Nenhum livro encontrado para a pesquisa: ${query}`);
         }
       } catch (error) {
         console.error('Erro ao buscar livros:', error);
         setErrorMessage('Erro ao buscar livros. Tente novamente.');
+      } finally {
+        setLoading(false);  // Desativar estado de carregamento ao terminar
       }
     } else {
       setErrorMessage('Por favor, insira um título para buscar.');
@@ -43,18 +45,26 @@ function BookSearch() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button className='btn' type="submit">Buscar</button>
+        <button className="btn" type="submit" disabled={loading}>
+          {loading ? (
+            <i className="fa fa-refresh fa-spin"></i> // Ícone de recarregar enquanto carrega
+          ) : (
+            'Buscar'
+          )}
+        </button>
       </form>
-      {errorMessage && <p className="error">{errorMessage}</p>} {/* Exibe a mensagem de erro */}
+      
+      {errorMessage && <p className="error">{errorMessage}</p>}
+
       <div className="book-results">
         {books.map((book, index) => (
           <div key={index} className="book-item">
             <h3>{book.titulo}</h3>
-            <p>{book.autor}</p>
+            <p>Autor: {book.autor}</p>
             <a href={book.livro} target="_blank" rel="noreferrer">
               Ler o livro
             </a>
-            <img src={book.capa} alt={book.titulo} />
+            <img src={book.capa} alt={`Capa do livro ${book.titulo}`} />
           </div>
         ))}
       </div>

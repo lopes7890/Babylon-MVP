@@ -1,6 +1,5 @@
 /* BookSearch.css */
 .book-search {
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,13 +11,13 @@
   margin: 0 auto;
   border: 1px solid #ddd; /* Adiciona uma borda ao redor da barra de busca */
 }
+
 .error {
   color: red;
   margin: 10px 0;
 }
 
 form {
-
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -48,6 +47,21 @@ button.btn {
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
+}
+
+button.btn .spinner {
+  border: 3px solid #f3f3f3; /* Cor clara para o spinner */
+  border-top: 3px solid #fff; /* Cor de destaque para o spinner */
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  margin-right: 5px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 button.btn:hover {
