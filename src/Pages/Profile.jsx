@@ -5,13 +5,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import './css/Profile.css';
 import Modal from '../Components/Modal/Modal';
 import perfil from '../assets/perfil_padrao.png';
+import useLogged from '../contexts/loggedContext';
 
 function Profile() {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({
+    balance: 0,
+  });
   const [bestSeller, setBestSeller] = useState({});
   const [publishedBooks, setPublishedBooks] = useState([]);
   const [newAvatar, setNewAvatar] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isLoggedIn, userData: dadosUsuario } = useLogged();
 
   useEffect(() => {
     fetch('https://babylon-mvp-backend.onrender.com/api/user-profile')
@@ -71,28 +75,45 @@ function Profile() {
   return (
     <div className="profile-container">
       <div className="user-info">
-        <div
-          className="avatar"
-          style={{
-            backgroundImage: `url(${userData.avatarUrl || perfil})`,
-          }}
-        >
-          <input type="file" id="avatar-upload" onChange={handleAvatarChange} />
-          <label htmlFor="avatar-upload" className="avatar-edit-icon">
-            <FaUpload className="icon-upload" /> {/* Ícone de upload */}
-          </label>
+        <div className="infos-initial">
+          <span className="userName">
+            {isLoggedIn ? dadosUsuario.nome : 'Faça login'}
+          </span>
+          <div
+            className="avatar"
+            style={{
+              backgroundImage: `url(${userData.avatarUrl || perfil})`,
+            }}
+          >
+            <input
+              type="file"
+              id="avatar-upload"
+              onChange={handleAvatarChange}
+            />
+            <label htmlFor="avatar-upload" className="avatar-edit-icon">
+              <FaUpload className="icon-upload" /> {/* Ícone de upload */}
+            </label>
+          </div>
         </div>
         <h2>{userData.name}</h2>
         <div className="stats">
-          <p>
-            <strong>{userData.followers}</strong> seguidores
+          <p className="followers-container">
+            seguidores
+            <strong>{userData.followers || 0}</strong>
           </p>
-          <p>
-            <strong>{userData.following}</strong> Seguindo
+          <p className="followers-container">
+            Seguindo
+            <strong>{userData.following || 0}</strong>
           </p>
         </div>
         <div className="balance">
-          <p>Saldo: R${userData.balance}</p>
+          <p>
+            Saldo:{' '}
+            {userData.balance.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            })}
+          </p>
           <button onClick={handleWithdraw}>Sacar</button>
         </div>
       </div>

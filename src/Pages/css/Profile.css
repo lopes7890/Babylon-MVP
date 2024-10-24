@@ -10,6 +10,24 @@
   color: white;
 }
 
+.followers-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.infos-initial {
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  flex-direction: column;
+}
+
+.userName {
+  text-transform: uppercase;
+  /* display: block; */
+}
+
 /* Botão de edição de avatar */
 .editar {
   position: absolute;
