@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-<<<<<<< HEAD
 import './BookSearch.css'; 
-=======
-import './BookSearch.css';  
->>>>>>> ec754065201b3d434a33962da7bae752f21a7db2
 
 function BookSearch() {
   const [query, setQuery] = useState('');
   const [books, setBooks] = useState([]);
-<<<<<<< HEAD
   const [loading, setLoading] = useState(false);
-=======
-  const [errorMessage, setErrorMessage] = useState('');
-  const [loading, setLoading] = useState(false);  
->>>>>>> ec754065201b3d434a33962da7bae752f21a7db2
 
   const handleSearch = async (e) => {
     e.preventDefault();
