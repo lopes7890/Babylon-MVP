@@ -1,28 +1,80 @@
+:root {
+  --primary-color: #bd9ee0;
+  --secondary-color: #007bff;
+  --error-color: red;
+  --modal-bg-color: rgba(0, 0, 0, 0.8);
+  --white: white;
+  --dark-gray: #333;
+}
+
 .book-search {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  /* background-color: #f9f9f9; */
   border-radius: 8px;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
   max-width: 800px;
   margin: 0 auto;
-  /* border: 1px solid #ddd;  */
+}
+
+.modal {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--modal-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--white);
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  max-height: 80vh;
+  border-radius: 8px;
+  position: relative;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+#close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--dark-gray);
+  transition: color 0.3s ease;
+  z-index: 1100;
+}
+
+#close-modal:hover {
+  color: var(--primary-color);
 }
 
 .read-link {
   display: inline-block;
   text-decoration: none;
-  color: #fff;
-  background-color: #007bff;
+  color: var(--white);
+  background-color: var(--secondary-color);
   padding: 8px 12px;
   border-radius: 4px;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.read-link:hover {
+  transform: scale(1.05);
 }
 
 .error {
-  color: red;
+  color: var(--error-color);
   margin: 10px 0;
 }
 
@@ -37,6 +89,7 @@ form {
   align-items: center;
   width: 100%;
   position: relative;
+  margin-bottom: 15px;
 }
 
 input {
@@ -54,18 +107,18 @@ input {
   position: absolute;
   right: 10px;  
   cursor: pointer;
-  color: #333;
+  color: var(--dark-gray);
   transition: color 0.3s;
 }
 
 .reload-icon:hover {
-  color:#bd9ee0;
+  color: var(--primary-color);
 }
 
 button.btn {
   width: 100%;
-  background-color: #bd9ee0;
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--white);
   border: none;
   border-radius: 4px;
   padding: 10px;
@@ -117,6 +170,7 @@ button.btn:hover {
   align-items: center;
   width: 150px;
   text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .book-item img {
@@ -124,7 +178,6 @@ button.btn:hover {
   border-radius: 4px;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .book-search {
     padding: 15px;
