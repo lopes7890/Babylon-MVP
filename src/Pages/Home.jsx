@@ -5,7 +5,7 @@ import RandomBooks from '../Components/RandomBooks/RandomBooks';
 function Home() {
   return (
     <div>
-      <BookSearch />
+      {/* <BookSearch /> */}
       <RandomBooks />
     </div>
   );

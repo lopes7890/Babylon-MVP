@@ -1,6 +1,6 @@
 :root {
   --primary-color: #bd9ee0;
-  --secondary-color: #007bff;
+  --secondary-color: #91b5e5;
   --error-color: red;
   --modal-bg-color: rgba(0, 0, 0, 0.8);
   --white: white;
@@ -18,7 +18,7 @@
 }
 
 .modal {
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -71,6 +71,7 @@
 
 .read-link:hover {
   transform: scale(1.05);
+  background-color: #0056b3;
 }
 
 .error {
@@ -98,18 +99,18 @@ form {
 
 input {
   width: 100%;
-  padding: 10px 40px 10px 10px; 
+  padding: 10px 40px 10px 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 16px;
   outline: none;
   box-sizing: border-box;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 .reload-icon {
   position: absolute;
-  right: 10px;  
+  right: 10px;
   cursor: pointer;
   color: var(--dark-gray);
   transition: color 0.3s;
@@ -135,28 +136,32 @@ button.btn {
 }
 
 button.btn .spinner {
-  border: 3px solid rgba(255, 255, 255, 0.3); 
-  border-top: 3px solid #fff; 
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #fff;
   border-radius: 50%;
   width: 16px;
   height: 16px;
   animation: spin 1s linear infinite;
-  margin-right: 5px; 
+  margin-right: 5px;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 button.btn:disabled {
-  background-color: #888; 
+  background-color: #888;
   cursor: not-allowed;
 }
 
 button.btn:hover {
   background-color: #b08cda;
-  transform: translateY(-2px); 
+  transform: translateY(-2px);
 }
 
 .book-results {
@@ -188,7 +193,7 @@ button.btn:hover {
   }
 
   .input-group {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
   }
 
   button.btn {

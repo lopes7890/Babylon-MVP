@@ -3,6 +3,7 @@ import { FaSearch, FaBook, FaSpinner, FaSlidersH } from 'react-icons/fa';
 import './RadomBooks.css';
 import limitarCaracteres from '../../utils/limitCharacters.js';
 import useFetchCachedBooks from '../../hooks/useCacheFetchBooks';
+import BookSearch from '../BookSearch/BookSearch.jsx';
 
 const RandomBooks = () => {
   const [books, setBooks] = useState([]);
@@ -62,6 +63,9 @@ const RandomBooks = () => {
   return (
     <div className="books-container">
       <h2 className="books-title">Livros</h2>
+      <div>
+        <BookSearch />
+      </div>
 
       <div className="container-tools" ref={containerTools}>
         <FaSlidersH className="tools-icon" onClick={handleFilter} />
@@ -120,7 +124,6 @@ const RandomBooks = () => {
           ))
         ) : (
           <li className="no-results">Nenhum livro encontrado.</li>
-          
         )}
       </ul>
     </div>
