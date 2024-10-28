@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FiRefreshCw, FiX } from "react-icons/fi";
 import "./BookSearch.css";
@@ -9,6 +9,17 @@ function BookSearch() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+    return () => {
+      document.body.classList.remove("modal-open"); // Remove when component unmounts
+    };
+  }, [isModalOpen]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
