@@ -48,6 +48,7 @@
   display: flex;
   align-items: center;
   gap: 30px;
+  padding: 10px;
 }
 
 .btn * {
@@ -58,7 +59,7 @@
   background-color: rgb(250, 73, 73) !important;
 }
 
-.auth-button button {
+/* .auth-button button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -66,7 +67,7 @@
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-}
+} */
 
 .auth-button button:hover {
   background-color: #0056b3;

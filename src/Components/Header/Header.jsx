@@ -6,8 +6,9 @@ import React, {
   useState,
 } from 'react';
 import './Header.css';
-import { Link } from 'react-router-dom';
 import useLogged from '../../contexts/loggedContext';
+import Button from '../Buttons/Button';
+
 function Header() {
   const { isLoggedIn } = useLogged();
 
@@ -28,13 +29,15 @@ function Header() {
 
         {!isLoggedIn && (
           <div className="auth-button">
-            <Link to="/login?auth=signup" className="btn">
+            {/* <Link to="/login?auth=signup" className="btn">
               <button>Cadastre-se</button>
-            </Link>
-
-            <Link to="/login" className="btn">
-              <button>Entrar</button>
-            </Link>
+            </Link> */}
+            <div>
+              <Button href={'/login?auth=signup'}>Cadastre-se</Button>
+            </div>
+            <div>
+              <Button href={'/login'}>Entrar</Button>
+            </div>
           </div>
         )}
       </nav>
