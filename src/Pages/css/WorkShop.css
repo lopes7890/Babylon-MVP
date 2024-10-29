@@ -1,94 +1,86 @@
 .workshop-container {
-   background-color: #cfdadd;;
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100dvh;
+  background-color: #cfdadd;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100dvh;
+}
+
+.workshop-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.new-project-btn,
+.published-books-btn {
+  background-color: #52a3e2;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.projects-section {
+  background-color: #52a3e2;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.projects-section p {
+  color: white;
+}
+
+.projects {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.project {
+  text-align: center;
+}
+
+.book-cover {
+  width: 60px;
+  height: 80px;
+  background-color: #f469c7;
+  margin: 0 auto 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .workshop-container {
+    padding: 10px;
   }
-  
+
   .workshop-buttons {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    flex-direction: column;
   }
-  
-  .new-project-btn, .published-books-btn {
-    background-color: #52a3e2;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
+
   .projects-section {
-    background-color: #52a3e2;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    padding: 15px;
   }
-  .projects-section p{
-    color: white;
-  }
-  
+
   .projects {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
+    flex-direction: column;
   }
-  
-  .project {
-    text-align: center;
-  }
-  
+
   .book-cover {
-    width: 60px;
-    height: 80px;
-    background-color: #f469c7;
-    margin: 0 auto 10px;
+    width: 50px;
+    height: 70px;
   }
-  
-  
-  
-  /* Responsividade */
-  @media (max-width: 768px) {
-    .workshop-container {
-      padding: 10px;
-    }
-  
-    .workshop-buttons {
-      flex-direction: column;
-    }
-  
-    .projects-section {
-      width: 100%;
-      padding: 15px;
-    }
-  
-    .projects {
-      flex-direction: column;
-    }
-  
-    .book-cover {
-      width: 50px;
-      height: 70px;
-    }
-  
-   
-  
-   
+}
+
+@media (max-width: 480px) {
+  .book-cover {
+    width: 40px;
+    height: 60px;
   }
-  
-  @media (max-width: 480px) {
-    .book-cover {
-      width: 40px;
-      height: 60px;
-    }
-  
-    
-  }
-  
+}
