@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaHome, FaBook, FaPodcast, FaPencilAlt, FaUser } from 'react-icons/fa';
 
 function FooterNav() {
-  const [select, setSelect] = useState(1);
+  const [select, setSelect] = useState(0);
 
   const background = useRef(undefined);
 
