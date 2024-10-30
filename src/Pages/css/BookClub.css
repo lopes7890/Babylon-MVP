@@ -1,99 +1,102 @@
 /* Container principal do BookClub */
 .book-club-container {
-    background-color: #e0f7fa; /* Fundo suave e agradável */
-    border-radius: 15px;
-    padding: 20px;
-    margin: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Título do clube do livro */
-  .book-club-container h3 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #006064;
-    margin-bottom: 10px;
-  }
-  
-  /* Estilo para a área de informações do clube */
-  .club-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  /* Estilo para o livro atual */
-  .club-book p {
-    font-size: 18px;
-    color: #00796b;
-    margin-bottom: 5px;
-  }
-  
-  .book-cover {
-    width: 100px;
-    height: 150px;
-    background-color: #d81b60;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Estilo para os membros do clube */
-  .club-members {
-    width: 50%;
-  }
-  
-  .club-members p {
-    font-size: 18px;
-    color: #00796b;
-    margin-bottom: 10px;
-  }
-  
-  .club-members ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .club-members li {
-    font-size: 16px;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .icon {
-    width: 15px;
-    height: 15px;
-    margin-right: 10px;
-    border-radius: 50%;
-    background-color: #00838f;
-  }
-  
-  /* Ícones personalizados para membros */
-  .member1 { background-color: #00bfa5; } /* Verde para o primeiro membro */
-  .member2 { background-color: #d81b60; } /* Rosa para o segundo membro */
-  /* Adicione mais classes para mais membros se necessário */
-  
-  /* Estilo para detalhes do livro selecionado */
-  .book-details {
-    background-color: #ffffff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-  }
-  
-  .book-details h3 {
-    font-size: 20px;
-    color: #006064;
-  }
-  
-  .book-details p {
-    font-size: 16px;
-    color: #004d40;
-    margin-bottom: 10px;
-  }
-  
+  background-color: #e0f7fa; /* Fundo suave e agradável */
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título do clube do livro */
+.book-club-container h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #006064;
+  margin-bottom: 10px;
+}
+
+/* Estilo para a área de informações do clube */
+.club-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Estilo para o livro atual */
+.club-book p {
+  font-size: 18px;
+  color: #00796b;
+  margin-bottom: 5px;
+}
+
+.book-cover {
+  width: 100px;
+  height: 150px;
+  background-color: #d81b60;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para os membros do clube */
+.club-members {
+  width: 50%;
+}
+
+.club-members p {
+  font-size: 18px;
+  color: #00796b;
+  margin-bottom: 10px;
+}
+
+.club-members ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.club-members li {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: #00838f;
+}
+
+/* Ícones personalizados para membros */
+.member1 {
+  background-color: #00bfa5;
+} /* Verde para o primeiro membro */
+.member2 {
+  background-color: #d81b60;
+} /* Rosa para o segundo membro */
+/* Adicione mais classes para mais membros se necessário */
+
+/* Estilo para detalhes do livro selecionado */
+.book-details {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.book-details h3 {
+  font-size: 20px;
+  color: #006064;
+}
+
+.book-details p {
+  font-size: 16px;
+  color: #004d40;
+  margin-bottom: 10px;
+}

@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import './css/Library.css';
+import styles from './css/Library.module.css';
+import CardBookClub from '../Components/bookClub/CardBookClub';
+
 function Library() {
   const [library, setLibrary] = useState([]);
   const [bookClub, setBookClub] = useState({ name: '', book: {}, members: [] });
+
   const [selectedBook, setSelectedBook] = useState(null); // Estado para o livro selecionado
 
   // Função para buscar os dados da biblioteca do backend
   useEffect(() => {
-    fetch('https://babylon-mvp-backend.onrender.com/library"')
-      .then((response) => response.json())
-      .then((data) => setLibrary(data.books))
-      .catch((error) => console.error('Erro ao buscar biblioteca:', error));
-
-    fetch('/api/book-club')
+    fetch('https://babylon-mvp-backend.onrender.com/clube')
       .then((response) => response.json())
       .then((data) => setBookClub(data))
+      .catch((error) => console.error('Erro ao buscar biblioteca:', error));
+
+    fetch('https://babylon-mvp-backend.onrender.com/biblioteca')
+      .then((response) => response.json())
+      .then((data) => setLibrary(data))
       .catch((error) => console.error('Erro ao buscar clube do livro:', error));
   }, []);
 
@@ -44,17 +47,18 @@ function Library() {
   };
 
   return (
-    <div className="library-container">
-      <div className="section library">
+    <div className={styles.libraryContainer}>
+      <div className={styles.section + ' ' + styles.library}>
         <h3>Sua biblioteca:</h3>
-        <div className="books">
+        <div className={styles.books}>
           {library.map((book, index) => (
-            <div
-              key={index}
-              className="book-cover"
-              onClick={() => handleBookClick(book)} // Adiciona evento de clique
-            >
-              <p>{book.name}</p>
+            <div className={styles.containerBook}>
+              <div
+                key={index}
+                className={styles.bookCover}
+                onClick={() => handleBookClick(book)} // Adiciona evento de clique
+              ></div>
+              <p className={styles.nomeClub}>{book.nome}</p>
             </div>
           ))}
         </div>
@@ -62,7 +66,7 @@ function Library() {
 
       {/* Exibir detalhes do livro selecionado */}
       {selectedBook && (
-        <div className="book-details">
+        <div className={styles.bookDetails}>
           <h3>Detalhes do Livro</h3>
           <p>Nome: {selectedBook.name}</p>
           <p>Autor: {selectedBook.author}</p>
@@ -70,27 +74,15 @@ function Library() {
         </div>
       )}
 
-      <div className="section book-club">
+      <div className={styles.section + ' ' + styles.bookClub}>
         <h3>Clube do livro: {bookClub.name}</h3>
-        <div className="club-info">
-          <div className="club-book">
-            <p>Livro:</p>
-            <div className="book-cover">
-              <p>{bookClub.book.name}</p>
-            </div>
-          </div>
-          <div className="club-members">
-            <p>Integrantes:</p>
-            <ul>
-              {bookClub.members.map((member, index) => (
-                <li key={index}>
-                  <span className={`icon member${index + 1}`}></span>{' '}
-                  {member.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        {bookClub.length > 0 ? (
+          bookClub.map((club) => {
+            return <CardBookClub styles={styles} dados={club} />;
+          })
+        ) : (
+          <h1>Voce nao esta em nenhum clube</h1>
+        )}
       </div>
     </div>
   );

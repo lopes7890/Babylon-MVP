@@ -10,11 +10,11 @@ export default function Layout({ children, condicao }) {
         <>
           <Header />
           <SidebarMenu />
-          {children}
+          <main>{children}</main>
           <FooterNav />
         </>
       ) : (
-        <>{children}</>
+        <main>{children}</main>
       )}
     </>
   );

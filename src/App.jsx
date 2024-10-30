@@ -25,23 +25,20 @@ const App = () => {
   return (
     <>
       <LoggedProvider>
-        <div>
-          <Layout condicao={usarTemplate}>
-            <Routes>
-              <Route path="/login" element={<LoginSignup />} />
-              <Route path="/" element={<Home />} />
-              <Route path="/book/:id" element={<BookDetail />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/iastory" element={<IaStoryTeller />} />
-              <Route path="/lives" element={<Lives />} />
-              <Route path="/workshop" element={<WorkShop />} />
-              <Route path="/library" element={<Library />} />
-              <Route path="/feed" element={<Feed />} />
-              <Route path="/bookclub" element={<BookClub />} />
-            </Routes>
-          </Layout>
-          {/* <FooterNav /> */}
-        </div>
+        <Layout condicao={usarTemplate}>
+          <Routes>
+            <Route path="/login" element={<LoginSignup />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/book/:id" element={<BookDetail />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/iastory" element={<IaStoryTeller />} />
+            <Route path="/lives" element={<Lives />} />
+            <Route path="/workshop" element={<WorkShop />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/bookclub" element={<BookClub />} />
+          </Routes>
+        </Layout>
       </LoggedProvider>
     </>
   );
