@@ -23,7 +23,7 @@ function Header() {
             <a href="#categorias">Categorias</a>
           </li>
           <li>
-            <a href="#colaborador">Seja um colaborador</a>
+            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=bEY47UG2fUOa6dgBuCn6lHFM9GWUW69Bp1JRdJKf_6hUM040QVo0MDc4NUNBSjJSUjZJOEg3MVZUVS4u">Seja um colaborador</a>
           </li>
         </ul>
 
