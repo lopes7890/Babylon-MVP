@@ -1,139 +1,107 @@
-/* Estilização geral do container da biblioteca */
 .libraryContainer {
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background: linear-gradient(to bottom right, #a4dbf6, #91c7f4);
+  gap: 20px;
   padding: 20px;
-  border-radius: 10px;
-  color: white;
+  font-family: Arial, sans-serif;
 }
 
-.libraryContainer * {
-  color: white;
-}
-
-/* Seções da biblioteca e do clube do livro */
 .section {
-  background-color: #52a3e2;
-  padding: 20px;
+  background-color: #a8c5eb;
   border-radius: 10px;
-  width: 80%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-/* Estilização das capas dos livros */
+.library {
+  border: 2px solid #e8e8e8;
+}
+
 .books {
   display: flex;
-  gap: 20px;
-  margin-top: 10px;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .containerBook {
-  width: 100px;
-}
-
-.nomeClub {
-  word-wrap: break-word;
-  max-width: 100%;
+  width: 120px;
+  text-align: center;
 }
 
 .bookCover {
   width: 100px;
   height: 150px;
-  background-color: #f469c7;
+  background-color: #d4d4d4;
+  border-radius: 8px;
+  margin: 0 auto 10px auto;
+}
+
+.nomeClub {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.bookClub {
+  border: 2px solid #e8e8e8;
+}
+
+.createClubSection {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clubInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.createClubButton {
+  background-color: #bd9ee0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 12px;
-  border-radius: 5px;
+  gap: 8px;
+  transition: background-color 0.3s;
 }
 
-/* Estilização da seção do clube do livro */
-.clubInfo {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+.createClubButton:hover {
+  background-color: #a388c2;
 }
 
-.clubBook {
-  flex: 1;
-  text-align: left;
-}
-
-.clubMembers {
-  flex: 2;
-  text-align: left;
-}
-
-.clubMembers ul {
-  list-style: none;
-  padding: 0;
-}
-
-.clubMembers li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.icon {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.member1 {
-  background-color: #38b6ff;
-}
-
-.member2 {
-  background-color: #ff4f4f;
-}
-
-/* Responsividade */
 @media (max-width: 768px) {
-  .section {
-    width: 90%;
+  .libraryContainer {
+    padding: 10px;
   }
 
   .books {
-    flex-direction: column;
-  }
-
-  .bookCover {
-    margin-bottom: 10px;
-    width: 50px;
-    height: 70px;
-  }
-
-  .clubInfo {
-    flex-direction: column;
-  }
-
-  .clubBook,
-  .clubMembers {
-    text-align: center;
-  }
-
-  .clubMembers li {
     justify-content: center;
   }
-}
 
-@media (max-width: 480px) {
-  .bookCover {
-    width: 50px;
-    height: 70px;
+  .containerBook {
+    width: 100px;
   }
 
-  .icon {
-    width: 15px;
-    height: 15px;
+  .bookCover {
+    width: 80px;
+    height: 120px;
+  }
+
+  .clubInput {
+    width: 100%;
+    max-width: 300px;
   }
 }
