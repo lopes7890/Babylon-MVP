@@ -2,6 +2,7 @@
   max-width: 600px;
   margin: auto;
   padding: 20px;
+  padding-bottom: 100px; /* Adiciona espaço extra na parte inferior */
 }
 
 .new-post {
@@ -149,6 +150,7 @@
 @media (max-width: 600px) {
   .feed-container {
     padding: 10px;
+    padding-bottom: 100px; /* Adiciona espaço extra na parte inferior */
   }
 
   .post-header {
