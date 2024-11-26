@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaUpload, FaEdit } from 'react-icons/fa';
+import { FaCloudUploadAlt, FaEdit } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './css/Profile.css';
@@ -68,8 +68,7 @@ function Profile() {
   };
 
   const handleWithdraw = () => {
-    // Simulação de saque
-    toast.success('Saque realizado com sucesso!'); // Notificação de sucesso ao sacar
+    toast.success('Saque realizado com sucesso!');
   };
 
   return (
@@ -89,21 +88,20 @@ function Profile() {
               type="file"
               id="avatar-upload"
               onChange={handleAvatarChange}
+              hidden
             />
             <label htmlFor="avatar-upload" className="avatar-edit-icon">
-              <FaUpload className="icon-upload" /> {/* Ícone de upload */}
+              <FaCloudUploadAlt className="icon-upload" />
             </label>
           </div>
         </div>
         <h2>{userData.name}</h2>
         <div className="stats">
-          <p className="followers-container">
-            seguidores
-            <strong>{userData.followers || 0}</strong>
+          <p>
+            Seguidores: <strong>{userData.followers || 0}</strong>
           </p>
-          <p className="followers-container">
-            Seguindo
-            <strong>{userData.following || 0}</strong>
+          <p>
+            Seguindo: <strong>{userData.following || 0}</strong>
           </p>
         </div>
         <div className="balance">
@@ -119,7 +117,7 @@ function Profile() {
       </div>
 
       <div className="best-seller">
-        <h3>Mais vendido!!</h3>
+        <h3>Mais Vendido</h3>
         <div
           className="book-cover"
           style={{ backgroundImage: `url(${bestSeller.coverUrl})` }}
@@ -128,7 +126,7 @@ function Profile() {
       </div>
 
       <div className="published-books">
-        <h3>Livros publicados:</h3>
+        <h3>Livros Publicados</h3>
         <div className="books">
           {publishedBooks.map((book, index) => (
             <div
@@ -137,7 +135,7 @@ function Profile() {
               style={{ backgroundImage: `url(${book.coverUrl})` }}
             >
               <p>{book.title}</p>
-              <FaEdit className="icon-edit" /> {/* Ícone de edição */}
+              <FaEdit className="icon-edit" />
             </div>
           ))}
         </div>
@@ -149,7 +147,6 @@ function Profile() {
         onSave={saveAvatar}
       />
 
-      {/* Container do Toastify */}
       <ToastContainer
         position="top-right"
         autoClose={3000}

@@ -180,11 +180,15 @@ button.btn:hover {
   width: 150px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 8px;
 }
 
 .book-item img {
   max-width: 100%;
-  border-radius: 4px;
+  height: auto;
+  border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -207,6 +211,10 @@ button.btn:hover {
   .book-item {
     width: 120px;
   }
+
+  .book-item img {
+    border-radius: 6px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -226,5 +234,9 @@ button.btn:hover {
 
   .book-item {
     width: 100px;
+  }
+
+  .book-item img {
+    border-radius: 4px;
   }
 }

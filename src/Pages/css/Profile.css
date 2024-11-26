@@ -1,51 +1,35 @@
-/* Estilização geral do container do perfil */
+/* Container geral do perfil */
 .profile-container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #a8c5eb;
+  background-color: #e9ecef;
   padding: 20px;
-  border-radius: 10px;
-  color: white;
+  color: #343a40;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.followers-container {
+/* Informações iniciais do usuário */
+.infos-initial {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-}
-
-.infos-initial {
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .userName {
-  text-transform: uppercase;
-  /* display: block; */
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
-/* Botão de edição de avatar */
-.editar {
-  position: absolute;
-  bottom: -10px;
-  right: -10px;
-  width: 30px;
-  color: #b9a2a2;
-  padding: 5px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-/* Estilização da seção de informações do usuário */
+/* Informações do usuário */
 .user-info {
-  background-color: #52a3e2;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
-  width: 80%;
+  width: 100%;
   max-width: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -57,19 +41,29 @@
   position: relative;
   width: 80px;
   height: 80px;
-  background-color: #00000017;
+  background-color: #dee2e6;
   border-radius: 50%;
   margin: 0 auto 10px;
   background-size: cover;
   background-position: center;
 }
 
-/* Ocultando o input de arquivo */
-#avatar-upload {
-  display: none;
+.avatar-edit-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #6c757d;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
 }
 
-/* Estilização das estatísticas do usuário */
+/* Estatísticas do usuário */
 .stats {
   display: flex;
   justify-content: space-around;
@@ -77,35 +71,39 @@
 }
 
 .stats p {
-  color: white;
+  margin: 0;
+  font-size: 1em;
 }
 
-/* Seção de saldo e botão */
+/* Saldo e botão de saque */
 .balance {
   margin-top: 10px;
 }
 
 .balance p {
-  color: white;
+  margin-bottom: 10px;
 }
 
 .balance button {
-  width: 100%;
-  max-width: 350px;
-  background-color: #844dff;
+  background-color: #28a745;
+  color: #ffffff;
   border: none;
   padding: 10px 20px;
-  border-radius: 20px;
-  color: white;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-/* Seção do best-seller */
+.balance button:hover {
+  background-color: #218838;
+}
+
+/* Seção do mais vendido */
 .best-seller {
-  background-color: #52a3e2;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
-  width: 80%;
+  width: 100%;
   max-width: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -115,18 +113,19 @@
 .best-seller .book-cover {
   width: 60px;
   height: 80px;
-  background-color: #f469c7;
+  background-color: #dee2e6;
   margin: 10px auto;
   background-size: cover;
   background-position: center;
+  position: relative;
 }
 
 /* Seção dos livros publicados */
 .published-books {
-  background-color: #52a3e2;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
-  width: 80%;
+  width: 100%;
   max-width: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -135,17 +134,32 @@
 .published-books .books {
   display: flex;
   justify-content: space-around;
-  margin-top: 10px;
   flex-wrap: wrap;
 }
 
 .published-books .book-cover {
   width: 60px;
   height: 80px;
-  background-color: #f469c7;
+  background-color: #dee2e6;
   margin: 10px 0;
   background-size: cover;
   background-position: center;
+  position: relative;
+}
+
+.icon-edit {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: #6c757d;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
 }
 
 /* Responsividade para dispositivos menores */

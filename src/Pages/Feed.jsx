@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaThumbsUp, FaComment, FaCamera } from 'react-icons/fa';
 import './css/Feed.css';
 import perfil from '../assets/perfil_padrao.png';
 
@@ -21,9 +22,9 @@ function Feed() {
       image: null,
       likes: 5,
       comments: [],
-    }
+    },
   ]);
-  
+
   const [newPost, setNewPost] = useState('');
   const [newImage, setNewImage] = useState(null);
 
@@ -39,77 +40,96 @@ function Feed() {
 
   const handlePostSubmit = () => {
     if (newPost.trim() || newImage) {
-      setPosts([...posts, {
-        id: posts.length + 1,
-        user: 'Usuário_123',
-        avatar: perfil,
-        content: newPost,
-        image: newImage,
-        likes: 0,
-        comments: [],
-      }]);
+      setPosts([
+        ...posts,
+        {
+          id: posts.length + 1,
+          user: 'Usuário_123',
+          avatar: perfil,
+          content: newPost,
+          image: newImage,
+          likes: 0,
+          comments: [],
+        },
+      ]);
       setNewPost('');
       setNewImage(null);
     }
   };
 
   const handleLike = (postId) => {
-    setPosts(posts.map(post => 
-      post.id === postId ? { ...post, likes: post.likes + 1 } : post
-    ));
+    setPosts(
+      posts.map((post) =>
+        post.id === postId ? { ...post, likes: post.likes + 1 } : post
+      )
+    );
   };
 
   const handleComment = (postId, comment) => {
-    setPosts(posts.map(post => 
-      post.id === postId ? { ...post, comments: [...post.comments, comment] } : post
-    ));
+    setPosts(
+      posts.map((post) =>
+        post.id === postId
+          ? { ...post, comments: [...post.comments, comment] }
+          : post
+      )
+    );
   };
 
   return (
     <div className="feed-container">
       <h2>Publicações:</h2>
       <div className="new-post">
-        <textarea 
-          value={newPost}
-          onChange={handlePostChange}
-          placeholder="Alguém tem uma recomendação de livro?"
-        />
-        <div className="file-input-wrapper">
-          <button className="file-button">
-            <span role="img" aria-label="upload">📷</span> Adicionar Imagem
-          </button>
-          <input 
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
+        <div className="new-post-header">
+          <div className="avatar" style={{ backgroundImage: `url(${perfil})` }}></div>
+          <textarea
+            value={newPost}
+            onChange={handlePostChange}
+            placeholder="No que você está pensando?"
           />
         </div>
-        <button onClick={handlePostSubmit}>Publicar</button>
+        {newImage && (
+          <div className="new-post-image-preview">
+            <img src={newImage} alt="Preview" />
+          </div>
+        )}
+        <div className="new-post-actions">
+          <label className="file-input-label">
+            <FaCamera className="file-input-icon" />
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+          </label>
+          <button onClick={handlePostSubmit}>Publicar</button>
+        </div>
       </div>
       <div className="posts-list">
-        {posts.map(post => (
+        {posts.map((post) => (
           <div key={post.id} className="post">
             <div className="post-header">
-              <div 
-                className="avatar" 
+              <div
+                className="avatar"
                 style={{ backgroundImage: `url(${post.avatar})` }}
               ></div>
               <span className="user">{post.user}</span>
             </div>
             <p>{post.content}</p>
-            {post.image && <img src={post.image} alt="Post" className="post-image" />}
+            {post.image && (
+              <img src={post.image} alt="Post" className="post-image" />
+            )}
             <div className="post-actions">
               <button onClick={() => handleLike(post.id)}>
-                Like ({post.likes})
+                <FaThumbsUp /> Like ({post.likes})
               </button>
-              <button onClick={() => handleComment(post.id, 'Comentário Exemplo')}>
-                Comentar ({post.comments.length})
+              <button
+                onClick={() => handleComment(post.id, 'Comentário Exemplo')}
+              >
+                <FaComment /> Comentar ({post.comments.length})
               </button>
             </div>
             {post.comments.length > 0 && (
               <div className="post-comments">
                 {post.comments.map((comment, index) => (
-                  <p key={index} className="comment">{comment}</p>
+                  <p key={index} className="comment">
+                    {comment}
+                  </p>
                 ))}
               </div>
             )}
