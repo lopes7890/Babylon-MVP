@@ -84,7 +84,7 @@ function Feed() {
           <textarea
             value={newPost}
             onChange={handlePostChange}
-            placeholder="No que você está pensando?"
+            placeholder="escreva algo"
           />
         </div>
         {newImage && (
