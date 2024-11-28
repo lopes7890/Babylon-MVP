@@ -24,10 +24,26 @@ function Profile() {
         setUserData(data.user);
         setBestSeller(data.bestSeller);
         setPublishedBooks(data.publishedBooks);
+
+        // Salvar avatar no localStorage
+        if (data.user.avatarUrl) {
+          localStorage.setItem('avatarUrl', data.user.avatarUrl);
+        }
       })
       .catch((error) =>
         console.error('Erro ao buscar dados do perfil:', error)
       );
+  }, []);
+
+  useEffect(() => {
+    // Recuperar avatar do localStorage
+    const storedAvatarUrl = localStorage.getItem('avatarUrl');
+    if (storedAvatarUrl) {
+      setUserData((prevState) => ({
+        ...prevState,
+        avatarUrl: storedAvatarUrl,
+      }));
+    }
   }, []);
 
   const handleAvatarChange = (e) => {
@@ -40,6 +56,9 @@ function Profile() {
         ...prevState,
         avatarUrl: reader.result,
       }));
+
+      // Salvar avatar no localStorage
+      localStorage.setItem('avatarUrl', reader.result);
     };
     reader.readAsDataURL(file);
 
@@ -49,10 +68,11 @@ function Profile() {
   const saveAvatar = () => {
     if (newAvatar) {
       const formData = new FormData();
-      formData.append('avatar', newAvatar);
+      formData.append('file', newAvatar);
 
-      fetch('/api/user-profile/avatar', {
+      fetch('https://babylon-mvp-backend.onrender.com/imagem', {
         method: 'POST',
+        headers: { authorization: dadosUsuario.token },
         body: formData,
       })
         .then((response) => response.json())
