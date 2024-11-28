@@ -102,7 +102,6 @@ function LoginSignup() {
       });
 
       const data = await response.json();
-
       if (response.ok) {
         setErrorMessage('');
         toast.success(
@@ -110,7 +109,12 @@ function LoginSignup() {
             ? 'Conta criada com sucesso!'
             : 'Login realizado com sucesso!'
         );
-        setUserData({ ...formData, nome: data.usuario, senha: null });
+        setUserData({
+          ...formData,
+          nome: data.usuario,
+          senha: null,
+          token: data.token,
+        });
         login();
         navigate('/');
       } else if (response.status === 409) {
