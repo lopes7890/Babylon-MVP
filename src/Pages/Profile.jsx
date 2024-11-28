@@ -49,10 +49,11 @@ function Profile() {
   const saveAvatar = () => {
     if (newAvatar) {
       const formData = new FormData();
-      formData.append('avatar', newAvatar);
+      formData.append('file', newAvatar);
 
-      fetch('/api/user-profile/avatar', {
+      fetch('https://babylon-mvp-backend.onrender.com/imagem', {
         method: 'POST',
+        headers: { authorization: dadosUsuario.token },
         body: formData,
       })
         .then((response) => response.json())
