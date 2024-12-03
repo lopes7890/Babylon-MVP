@@ -1,102 +1,116 @@
-/* Container principal do BookClub */
 .book-club-container {
-  background-color: #e0f7fa; /* Fundo suave e agradável */
+  background:  #cfdadd;
   border-radius: 15px;
-  padding: 20px;
-  margin: 20px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 20px 120px 20px; /* Adicionando ainda mais preenchimento extra na parte inferior */
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Título do clube do livro */
-.book-club-container h3 {
-  font-size: 24px;
+.book-club-container:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+  font-size: 28px;
   font-weight: bold;
-  color: #006064;
-  margin-bottom: 10px;
-}
-
-/* Estilo para a área de informações do clube */
-.club-info {
-  display: flex;
-  justify-content: space-between;
+  color: #bd9ee0;
+  text-align: center;
   margin-bottom: 20px;
 }
 
-/* Estilo para o livro atual */
+.club-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 .club-book p {
-  font-size: 18px;
-  color: #00796b;
-  margin-bottom: 5px;
+  font-size: 20px;
+  color: #bd9ee0;
+  font-weight: bold;
 }
 
 .book-cover {
-  width: 100px;
-  height: 150px;
-  background-color: #d81b60;
-  color: #fff;
+  width: 120px;
+  height: 180px;
+  background-color: #fff;
+  color: #bd9ee0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 2px dashed #9a78c1;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-/* Estilo para os membros do clube */
+.book-cover:hover {
+  border: 2px solid #9672c0;
+  background-color: #f3e5f5;
+}
+
 .club-members {
-  width: 50%;
+  width: 100%;
+  max-width: 400px;
 }
 
 .club-members p {
   font-size: 18px;
-  color: #00796b;
+  text-align: center;
+  color: #bd9ee0;
   margin-bottom: 10px;
 }
 
 .club-members ul {
-  list-style-type: none;
-  padding-left: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .club-members li {
-  font-size: 16px;
-  margin-bottom: 5px;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 }
 
-.icon {
-  width: 15px;
-  height: 15px;
-  margin-right: 10px;
+.member-avatar {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background-color: #00838f;
+  margin-right: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Ícones personalizados para membros */
-.member1 {
-  background-color: #00bfa5;
-} /* Verde para o primeiro membro */
-.member2 {
-  background-color: #d81b60;
-} /* Rosa para o segundo membro */
-/* Adicione mais classes para mais membros se necessário */
-
-/* Estilo para detalhes do livro selecionado */
 .book-details {
   background-color: #ffffff;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
 }
 
 .book-details h3 {
-  font-size: 20px;
-  color: #006064;
+  font-size: 22px;
+  color: #bd9ee0;
 }
 
 .book-details p {
-  font-size: 16px;
-  color: #004d40;
+  font-size: 18px;
   margin-bottom: 10px;
+  color: #bd9ee0;
+}
+
+@media (max-width: 768px) {
+  .club-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .club-members {
+    margin-top: 20px;
+  }
 }

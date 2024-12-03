@@ -1,33 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import './css/BookClub.css';
+import React, { useEffect, useState } from "react";
+import "./css/BookClub.css";
 
 function BookClub() {
-  const [bookClub, setBookClub] = useState({ name: '', book: {}, members: [] });
+  const [bookClub, setBookClub] = useState({ name: "", book: {}, members: [] });
   const [selectedBook, setSelectedBook] = useState(null);
 
-  // Função para buscar os dados do clube do livro do backend
   useEffect(() => {
-    fetch('https://babylon-mvp-backend.onrender.com/club')
+    fetch("https://babylon-mvp-backend.onrender.com/club")
       .then((response) => response.json())
       .then((data) => setBookClub(data))
-      .catch((error) => console.error('Erro ao buscar clube do livro:', error));
+      .catch((error) =>
+        console.error("Erro ao buscar clube do livro:", error)
+      );
   }, []);
 
   const handleBookClick = (book) => {
     setSelectedBook(book);
 
-    fetch('/api/book-club/select-book', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("/api/book-club/select-book", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ book }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Livro selecionado salvo com sucesso:', data);
-        setBookClub((prevClub) => ({ ...prevClub, book: book }));
+        console.log("Livro selecionado salvo com sucesso:", data);
+        setBookClub((prevClub) => ({ ...prevClub, book }));
       })
       .catch((error) =>
-        console.error('Erro ao salvar o livro selecionado:', error)
+        console.error("Erro ao salvar o livro selecionado:", error)
       );
   };
 
@@ -37,8 +38,11 @@ function BookClub() {
       <div className="club-info">
         <div className="club-book">
           <p>Livro Atual:</p>
-          <div className="book-cover">
-            <p>{bookClub.book.name || 'Nenhum livro selecionado'}</p>
+          <div
+            className="book-cover"
+            onClick={() => handleBookClick(bookClub.book)}
+          >
+            <p>{bookClub.book.name || "Nenhum livro selecionado"}</p>
           </div>
         </div>
         <div className="club-members">
@@ -46,21 +50,23 @@ function BookClub() {
           <ul>
             {bookClub.members.map((member, index) => (
               <li key={index}>
-                <span className={`icon member${index + 1}`}></span>{' '}
+                <img
+                  src={`https://placehold.co/50x50`}
+                  alt={`Foto de ${member.name}`}
+                  className="member-avatar"
+                />
                 {member.name}
               </li>
             ))}
           </ul>
         </div>
       </div>
-
-      {/* Exibir detalhes do livro selecionado */}
       {selectedBook && (
         <div className="book-details">
           <h3>Detalhes do Livro Selecionado</h3>
-          <p>Nome: {selectedBook.name}</p>
-          <p>Autor: {selectedBook.author}</p>
-          <p>Descrição: {selectedBook.description}</p>
+          <p><strong>Nome:</strong> {selectedBook.name}</p>
+          <p><strong>Autor:</strong> {selectedBook.author}</p>
+          <p><strong>Descrição:</strong> {selectedBook.description}</p>
         </div>
       )}
     </div>
